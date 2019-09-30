@@ -123,7 +123,7 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_evaluation.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_evaluation.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
