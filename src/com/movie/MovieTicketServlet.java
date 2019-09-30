@@ -25,7 +25,7 @@ public class MovieTicketServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	// forwarding용 메소드
+	// forwarding�� 硫�����
 	protected void forward(HttpServletRequest req,HttpServletResponse resp, String url) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher(url);
 		rd.forward(req, resp);
@@ -44,10 +44,10 @@ public class MovieTicketServlet extends HttpServlet {
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
 
-		String url;	//forwading용
-		// 회원가입
+		String url;	//forwading��
+		// ����媛���
 		if(uri.indexOf("signUp.do")!=-1) {		
-			//indexOf는 값을 못찾으면 -1을 반환한다.
+			//indexOf�� 媛��� 紐살갼�쇰㈃ -1�� 諛�������.
 
 			url = "/jspProject/signUpMember/signUpMember.jsp";
 			forward(req,resp,url);
@@ -83,12 +83,12 @@ public class MovieTicketServlet extends HttpServlet {
 			MovieTicketDTO dto = dao.getReadData(userId);
 
 			if(dto==null|| !dto.getUserPwd().equals(userPwd)) {
-				req.setAttribute("message", "아이디 또는 패스워드가 맞지 않습니다. 확인 후 입력해주세요.");		
+				req.setAttribute("message", "���대�� ���� �⑥�ㅼ����媛� 留�吏� ���듬����. ���� �� ���ν�댁＜�몄��.");		
 				url = "/jspProject/login/movie_login.jsp";
 				forward(req,resp,url);					
 				return;
 			}
-			//세션에 id 올려둠
+			//�몄���� id �щ�ㅻ��
 			HttpSession session = req.getSession(true);
 			CustomInfo custominfo = new CustomInfo();
 			custominfo.setUserId(dto.getUserId());
@@ -99,7 +99,7 @@ public class MovieTicketServlet extends HttpServlet {
 		}
 
 
-		// 아이디 찾기 구역
+		// ���대�� 李얘린 援ъ��
 		else if(uri.indexOf("findId.do")!=-1) {
 
 			url = "/jspProject/findId/movie_fidId.jsp";
@@ -116,38 +116,38 @@ public class MovieTicketServlet extends HttpServlet {
 
 			if(dto==null||!dto.getUserName().equals(userName)) {
 
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/findIdConf.do";
 				forward(req,resp,url);
 
-				return;		// id/Name 가 틀리면 여기서 멈춰라
+				return;		// id/Name 媛� ��由щ㈃ �ш린�� 硫�異곕��
 
 			}
 
 			if(dto==null||!dto.getUserBirth().equals(userBirth)) {
 
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/findIdConf.do";
 				forward(req,resp,url);
 
-				return;		// id/Birth 가 틀리면 여기서 멈춰라
+				return;		// id/Birth 媛� ��由щ㈃ �ш린�� 硫�異곕��
 
 			}
 
 			if(dto==null||!dto.getUserTel().equals(userTel)) {
 
-				// class에서 jsp로 넘길때 setAttribute로 넘긴다.
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				// class���� jsp濡� ��湲몃�� setAttribute濡� ��湲대��.
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/findIdConf.do";
 				forward(req,resp,url);
 
-				return;		// id/tel 가 틀리면 여기서 멈춰라
+				return;		// id/tel 媛� ��由щ㈃ �ш린�� 硫�異곕��
 			}
 
-			req.setAttribute("message", "확인하신 아이디는 [" + dto.getUserId() + "] 입니다");
+			req.setAttribute("message", "���명���� ���대���� [" + dto.getUserId() + "] ������");
 
 			url = "/movie/findIdConf.do";
 			forward(req,resp,url);
@@ -160,7 +160,7 @@ public class MovieTicketServlet extends HttpServlet {
 			forward(req,resp,url);
 		}
 
-		// 비밀번호 찾기 구역
+		// 鍮�諛�踰��� 李얘린 援ъ��
 		else if(uri.indexOf("findPwd.do")!=-1) {
 
 			url = "/jspProject/findPwd/movie_fidPwd.jsp";
@@ -178,38 +178,38 @@ public class MovieTicketServlet extends HttpServlet {
 
 			if(dto==null||!dto.getUserId().equals(userId)) {
 
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/findPwdConf.do";
 				forward(req,resp,url);
 
-				return;		// id/Name 가 틀리면 여기서 멈춰라
+				return;		// id/Name 媛� ��由щ㈃ �ш린�� 硫�異곕��
 
 			}
 
 			if(dto==null||!dto.getUserBirth().equals(userBirth)) {
 
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/findPwdConf.do";
 				forward(req,resp,url);
 
-				return;		// id/Birth 가 틀리면 여기서 멈춰라
+				return;		// id/Birth 媛� ��由щ㈃ �ш린�� 硫�異곕��
 
 			}
 
 			if(dto==null||!dto.getUserTel().equals(userTel)) {
 
-				// class에서 jsp로 넘길때 setAttribute로 넘긴다.
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				// class���� jsp濡� ��湲몃�� setAttribute濡� ��湲대��.
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/findPwdConf.do";
 				forward(req,resp,url);
 
-				return;		// id/tel 가 틀리면 여기서 멈춰라
+				return;		// id/tel 媛� ��由щ㈃ �ш린�� 硫�異곕��
 			}
 
-			req.setAttribute("message", "확인하신 비밀번호는 [" + dto.getUserPwd() + "] 입니다");
+			req.setAttribute("message", "���명���� 鍮�諛�踰��몃�� [" + dto.getUserPwd() + "] ������");
 
 			url = "/movie/findPwdConf.do";
 			forward(req,resp,url);
@@ -224,7 +224,7 @@ public class MovieTicketServlet extends HttpServlet {
 		}
 
 
-		// 가입여부 확인
+		// 媛����щ� ����
 		else if(uri.indexOf("signConfirm.do")!=-1){
 
 			url = "/jspProject/signUpMember/checkUpMember.jsp";
@@ -241,36 +241,36 @@ public class MovieTicketServlet extends HttpServlet {
 
 			if(dto==null||!dto.getUserName().equals(userName)) {
 
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/signConfirm.do";
 				forward(req,resp,url);
-				return;		// id/Name 가 틀리면 여기서 멈춰라
+				return;		// id/Name 媛� ��由щ㈃ �ш린�� 硫�異곕��
 			}
 
 
 			if(dto==null||!dto.getUserBirth().equals(userBirth)) {
 
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/signConfirm.do";
 				forward(req,resp,url);
 
-				return;		// id/Birth 가 틀리면 여기서 멈춰라
+				return;		// id/Birth 媛� ��由щ㈃ �ш린�� 硫�異곕��
 			}
 
 			if(dto==null||!dto.getUserTel().equals(userTel)) {
 
-				// class에서 jsp로 넘길때 setAttribute로 넘긴다.
-				req.setAttribute("message", "회원정보가 존재하지 않습니다.");
+				// class���� jsp濡� ��湲몃�� setAttribute濡� ��湲대��.
+				req.setAttribute("message", "������蹂닿� 議댁�ы��吏� ���듬����.");
 
 				url = "/movie/signConfirm.do";
 				forward(req,resp,url);
 
-				return;		// id/tel 가 틀리면 여기서 멈춰라
+				return;		// id/tel 媛� ��由щ㈃ �ш린�� 硫�異곕��
 			}
 
-			req.setAttribute("message", "확인하신 아이디는 [" + dto.getUserId() + "] 입니다");
+			req.setAttribute("message", "���명���� ���대���� [" + dto.getUserId() + "] ������");
 
 			url = "/movie/signConfirm.do";
 			forward(req,resp,url);
@@ -278,13 +278,14 @@ public class MovieTicketServlet extends HttpServlet {
 		
 		else if(uri.indexOf("main.do")!=-1) {	
 			url = "/jspProject/cgvMain.jsp";
+			System.out.println(cp);
 			forward(req,resp,url);
 		}
-		// logout작업
+		// logout����
 		else if(uri.indexOf("logout.do")!=-1) {
 			HttpSession session = req.getSession();
-			session.removeAttribute("customInfo");		// customInfo에 있는 값 삭제 
-			session.invalidate();						// customInfo라는 변수도 삭제
+			session.removeAttribute("customInfo");		// customInfo�� ���� 媛� ���� 
+			session.invalidate();						// customInfo�쇰�� 蹂����� ����
 			url = cp+"/movie/main.do";
 			resp.sendRedirect(url);
 		}else if(uri.indexOf("event.do") != -1) {	
@@ -296,7 +297,7 @@ public class MovieTicketServlet extends HttpServlet {
 			String timetype=req.getParameter("timetype");
 			String roomtypestring=req.getParameter("roomtype");
 			int roomtype=Integer.valueOf(roomtypestring);
-			System.out.println(movietype+"��ȭ"+timetype+"�ð�"+roomtype+"�󿵰� ���� ����");
+			System.out.println(movietype+"占쏙옙화"+timetype+"占시곤옙"+roomtype+"占쏢영곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙");
 			MovieSitDAO msdao=new MovieSitDAO(DBCPConn.getConnection());
 			List<MovieSitDTO> lists=msdao.getLists(movietype, timetype, roomtype);
 			req.setAttribute("lists", lists);
@@ -304,13 +305,13 @@ public class MovieTicketServlet extends HttpServlet {
 			forward(req, resp, url);
 		}
 		
-		//��ȭ �� ����
+		//占쏙옙화 占쏙옙 占쏙옙占쏙옙
 		else if(uri.indexOf("movie_evaluation_select.do")!=-1) {
 			url="/jspProject/movie/movie_evaluation_select.jsp";
 			forward(req, resp, url);
 		}
 		
-		//��ȭ �� Ȯ��
+		//占쏙옙화 占쏙옙 확占쏙옙
 		else if(uri.indexOf("movie_evaluation.do")!=-1) {
 			HttpSession session=req.getSession();
 			req.setCharacterEncoding("UTF-8");
@@ -323,12 +324,12 @@ public class MovieTicketServlet extends HttpServlet {
 				userid=((CustomInfo)session.getAttribute("customInfo")).getUserId();
 			}else {
 			}
-			System.out.println(movietype+"��ȭ Ÿ������ ��� �� ��");
+			System.out.println(movietype+"占쏙옙화 타占쏙옙占쏙옙占쏙옙 占쏙옙占� 占쏙옙 占쏙옙");
 			//-----------------------------------------------------------------------
 			Movie_AppraisalDAO madao=new Movie_AppraisalDAO(DBCPConn.getConnection());
 
 			String pageNum=req.getParameter("pageNum");
-			int currentPage=1;//ó
+			int currentPage=1;//처
 			if(pageNum!=null){
 				currentPage=Integer.parseInt(pageNum);
 			}
@@ -346,7 +347,7 @@ public class MovieTicketServlet extends HttpServlet {
 			List<Movie_AppraisalDTO> lists=madao.getList(start, end, movietype);
 			req.setAttribute("lists", lists);
 			
-			//System.out.println(lists.size());ũ
+			//System.out.println(lists.size());크
 	
 			String listUrl="/study/movie/movie_evaluation.do?movietype="+URLEncoder.encode(movietype,"UTF-8");
 			String pageIndexList=myutil.pageIndexList(currentPage, totalPage, listUrl);
@@ -363,8 +364,8 @@ public class MovieTicketServlet extends HttpServlet {
 			int star_select=Integer.valueOf(req.getParameter("star_select"));
 			String content=req.getParameter("content");
 			String movietype=(String)session.getAttribute("movietype");
-			System.out.println(movietype+"�� ���� �ȳѾ���°� ����");
-			//movietype="���۳༮��";
+			System.out.println(movietype+"占쏙옙 占쏙옙占쏙옙 占싫넘억옙占쏙옙째占� 占쏙옙占쏙옙");
+			//movietype="占쏙옙占쌜녀석占쏙옙";
 			Movie_AppraisalDTO dto=new Movie_AppraisalDTO();
 			dto.setMovietype(movietype);
 			dto.setMsg(content);
@@ -409,7 +410,7 @@ public class MovieTicketServlet extends HttpServlet {
 					dto.setRoomtype(Integer.valueOf(req.getParameter("roomtype")));
 					System.out.println(((CustomInfo)session.getAttribute("customInfo")).getUserId());
 					dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
-					//dto.setUserId("�ӽ� ����� ���̵�");
+					//dto.setUserId("占쌈쏙옙 占쏙옙占쏙옙占� 占쏙옙占싱듸옙");
 					dto.setSitnum(((i*10)+j));
 					lists.add(dto);
 //					MovieSitDAO dao=new MovieSitDAO(conn);

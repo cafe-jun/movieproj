@@ -8,6 +8,8 @@
 String cp =request.getContextPath();
 List<Movie_selectDTO> lists=(List<Movie_selectDTO>)request.getAttribute("lists");
 List<Movie_countDTO> listscount=(List<Movie_countDTO>)request.getAttribute("listscount");
+
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,20 +18,20 @@ List<Movie_countDTO> listscount=(List<Movie_countDTO>)request.getAttribute("list
 <title>Insert title here</title>
 <script type="text/javascript">
 function movieimg(str) {
-	if(str=='애드 아스트라'){
-		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie4.jpg";
-	}
-	if(str=='나쁜녀석들'){
+	if(str=='보통의 연애'){
 		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie1.jpg";
 	}
-	if(str=='장사리'){
+	if(str=='양자물리학'){
+		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie4.jpg";
+	}
+	if(str=='퍼펙트맨'){
 		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie3.jpg";
 	}
-	if(str=='할리우드'){
-		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie2.jpg";
-	}
-	if(str=='타짜'){
+	if(str=='조커'){
 		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie5.jpg";
+	}
+	if(str=='장사리'){
+		document.getElementById('imagesrc').src="<%=cp %>/jspProject/image/movie2.jpg";
 	}
 }
 function movietype() {
@@ -77,7 +79,7 @@ function myformsubmit() {
 <br>
 <br>
 <div align="center">
-<img alt="" src="<%=cp %>/jspProject/image/movie2.jpg" width="900" height="600" id="imagesrc" name="imagesrc">
+<img alt="" src="<%=cp %>/jspProject/image/movie3.jpg" width="900" height="600" id="imagesrc" name="imagesrc">
 <br><br>
 <form method="post" name="myForm" action="<%=cp%>/movie/sit.do">
 <table style="border:1pt solid black">
@@ -97,7 +99,8 @@ function myformsubmit() {
 	<br>
 	<%String movename="";
 	for(Movie_selectDTO dto:lists){ 
-	if(!dto.getMovietype().equals(movename)){movename=dto.getMovietype();%>
+	if(!dto.getMovietype().equals(movename)){
+	movename=dto.getMovietype();%>
 	<input type="radio" id="movietype" name="movietype" value="<%=dto.getMovietype()%>" onclick="movieimg('<%=dto.getMovietype()%>');" checked="checked"><b><%=dto.getMovietype()%></b><br><br>
 	<%}
 	} %>
