@@ -88,6 +88,7 @@ width: 180px;
 <body style="background-color: #FDFCF0;">
 
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
+<!-- 20190930 Ver 형상관리  -->
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
