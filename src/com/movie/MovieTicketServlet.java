@@ -460,7 +460,9 @@ public class MovieTicketServlet extends HttpServlet {
 			url=cp+"/movie/movie_evaluation.do?movietype="+URLEncoder.encode(movietype,"UTF-8");
 			System.out.println(url);
 			resp.sendRedirect(url);
-		}else if(uri.indexOf("movie_select.do")!=-1) {
+		}
+		
+		else if(uri.indexOf("movie_select.do")!=-1) {
 			HttpSession session=req.getSession();
 
 			if(session.getAttribute("customInfo")==null||((CustomInfo)session.getAttribute("customInfo")).getUserId().equals("")) {
@@ -478,7 +480,9 @@ public class MovieTicketServlet extends HttpServlet {
 			req.setAttribute("listscount", listscount);
 			url="/jspProject/movie/movie_select.jsp";
 			forward(req, resp, url);
-		}else if(uri.indexOf("sit_ok.do")!=-1) {
+		}
+		
+		else if(uri.indexOf("sit_ok.do")!=-1) {
 //			boolean autocommit=true;
 //			if(conn.getAutoCommit()){
 //				conn.setAutoCommit(false);
