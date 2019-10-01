@@ -41,6 +41,7 @@ public class MovieStoreServlet extends HttpServlet{
 		MovieStoreDAO dao = new MovieStoreDAO(DBCPConn.getConnection());
 		MovieStoreOrderDAO orderdao = new MovieStoreOrderDAO(DBCPConn.getConnection());
 		MovieTicketDAO ticketdao = new MovieTicketDAO(DBCPConn.getConnection());
+		
 		Myutil myUtil = new Myutil();
 		String url;
 		String root = getServletContext().getRealPath("/");
@@ -48,9 +49,11 @@ public class MovieStoreServlet extends HttpServlet{
 		File f = new File(path);
 		if(!f.exists())
 			f.mkdirs();
+		
 		if(uri.indexOf("write.do")!=-1) {
 			url = "/mvproject/write.jsp";
 			forward(req, resp, url);
+			
 		}else if(uri.indexOf("write_ok.do")!=-1) {
 			String encType = "UTF-8";
 			int maxSize = 10*10*1024;
@@ -62,7 +65,6 @@ public class MovieStoreServlet extends HttpServlet{
 				dto.setSaveFileName(mr.getFilesystemName("upload"));
 				dto.setOriginalFileName(mr.getOriginalFileName("upload"));
 				dto.setPrice(Integer.parseInt(mr.getParameter("price")));
-				dto.setStoreType(mr.getParameter("storeType"));
 				dao.insertData(dto);
 			}
 			url = cp +"/store/list.do";
@@ -71,8 +73,7 @@ public class MovieStoreServlet extends HttpServlet{
 			List<MovieStoreDTO> snacklists = dao.getLists();
 			String imagePath = cp +"/pds/storeFile";
 			req.setAttribute("imagePath", imagePath);
-			req.setAttribute("lists",snacklists);
-			
+			req.setAttribute("lists",snacklists);		
 			url = "/mvproject/list.jsp";
 			forward(req, resp, url);	
 		}else if(uri.indexOf("storeInfo.do")!=-1) {
@@ -91,10 +92,10 @@ public class MovieStoreServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 			CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
 			String userId = customInfo.getUserId();
-			System.out.println(userId);
 			MovieTicketDTO ticketdto = ticketdao.getReadData(userId);
 			String imagePath = cp +"/pds/storeFile";
-			List<MovieStoreOrderDTO> orderlists = orderdao.ordergetList();
+			List<MovieStoreOrderDTO> orderlists = orderdao.ordergetList(userId);
+			
 			int totalSum = 0;
 			for (int i = 0; i < orderlists.size(); i++) {
 				totalSum += orderlists.get(i).getStoreSum();
@@ -111,8 +112,9 @@ public class MovieStoreServlet extends HttpServlet{
 			String userId = custominfo.getUserId();
 			MovieTicketDTO ticketdto = ticketdao.getReadData(userId);
 			String cardType = req.getParameter("cardType");
+			System.out.println("bill.do :"+userId);
 			String imagePath = cp +"/pds/storeFile";
-			List<MovieStoreOrderDTO> orderlists = orderdao.paymentgetList();
+			List<MovieStoreOrderDTO> orderlists = orderdao.paymentgetList(userId);
 			int totalSum = 0;
 			for (int i = 0; i < orderlists.size(); i++) {
 				totalSum += orderlists.get(i).getStoreSum();
@@ -126,6 +128,7 @@ public class MovieStoreServlet extends HttpServlet{
 			
 			url = "/mvproject/bill.jsp";
 			forward(req, resp, url);
+			
 		}else if(uri.indexOf("shoppingBasket.do")!=-1){
 			String userid = "test";
 			int num = Integer.parseInt(req.getParameter("num"));
@@ -141,8 +144,7 @@ public class MovieStoreServlet extends HttpServlet{
 				orderdao.OrderInsertData(orderdto);				
 			url= cp+"/store/list.do";
 			resp.sendRedirect(url);
-		}else if(uri.indexOf("paymentInsertData.do")!=-1){
-			//구매하기 버튼을 누를때 payment.do로 가는 조건문 
+		}else if(uri.indexOf("paymentInsertData.do")!=-1){ 
 			HttpSession session = req.getSession();
 			CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
 			String userId = customInfo.getUserId();	

@@ -1,22 +1,92 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	request.setCharacterEncoding("UTF-8");
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	request.setCharacterEncoding("UTF-8");	
 	String cp = request.getContextPath();
 	int count = 0;
 %>
-<!DOCTYPE html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>스토어,cgv</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<!-- Bootstrap core CSS -->
-<link href="<%=cp%>/mvproject/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href="<%=cp%>/mvproject/vendor/bootstrap/css/scrolling-nav.css" rel="stylesheet">
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>영화 그 이상의 감동. CGV</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="<%=cp%>/mvproject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core JavaScript -->
+  <script src="<%=cp%>/mvproject/vendor/jquery/jquery.min.js"></script>
+  <script	src="<%=cp%>/mvproject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="<%=cp%>/mvproject/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/plugins/ua/ec.js"></script>
+  
+  <style type="text/css">
+
+/* 기본 css */
+a:link { text-decoration: none;}
+a:hover { text-decoration: none;}
+
+.book {
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.nav {
+
+	text-align: center;
+}
+
+#content {
+	
+	width: 1000px;
+	height: 1500px;
+	margin-left: 400px;
+	margin-right: 500px;
+}
+
+#header { 
+	
+	
+ 	width: 1000px;
+	height: 130px; 
+	padding-left: 300px;
+	padding-right: 300px; 
+
+}
+
+.head {
+
+	width: 1920px;
+	height: 130px; 
+	padding-left: 400px;
+	padding-right: 500px;
+	margin-left: 0px;
+	margin-right: 0px; 
+}
+
+.login{
+	
+	font-size: 9pt;
+
+}
+
+.floating{
+position: fixed;
+right: 50%;
+top: 200px;
+margin-right: -660px;
+text-align: center;
+width: 180px;
+
+}
+</style>
 <script type="text/javascript">
 	function paymentSendIt() {
 		var f = document.myForm;
@@ -35,43 +105,70 @@
 	}
 </script>
 </head>
-<body id="page-top" style="background-color: #FEF8DC">
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		id="mainNav">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">CGV</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">영화</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">스토어</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">로그인</a></li>
-				</ul>
+
+<body id="page-top" style="background-color: #FDFCF0;">
+<!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
+
+	<c:choose>
+		<c:when test="${empty sessionScope.customInfo.userId }">
+			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
 			</div>
-		</div>
-	</nav>
-	<header class="bg-primary text-white" style="background-image: url('<%=cp%>/mvproject/image/bg.png');" >
-		
-		<div class="container text-center" style="height: 500px;">
-			<h1>
-				<b>CGV</b> STORE
-			</h1>
-			<p style="font-size: 40px;">
-				<b>CGV</b>&nbsp;STORE
-			</p>
-			<p class="lead">더 즐거운 영화감상을 하는 방법!</p>
-		</div>
-	</header>
-	<div style="height: 50px;"></div>
-		<div class="container" style="padding-left: 150px">
+		</c:when> 
+		<c:otherwise>
+		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				${sessionScope.customInfo.userId }님 반갑습니다.
+				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+
+
+  <!-- Navigation -->
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+	<div>
+			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
+				<h1 align="left" >
+				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
+				</h1>
+			</div>
+			<div style="display: inline-block; margin-top:10px; float: left; width: 80%; padding-left:30px; padding-top: 20px;" > 
+				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
+					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
+				</h3>
+				<div id="nav" align="center" style="margin-right: 250px;">
+				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+				<br><br>
+				</div>
+			</div>	
+	</div>
+</div>
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<br><br>
+
+  <br/><br/>
+	<div class="container" align="left">
+	 	 <section id="about">
+		      <div class="row">
+		        <div class="col-lg-8 mx-auto" >
+		          <h3 style="margin-left: -50px;"><b>팝콘/음료/굿즈</b></h3> 
+		      	</div>
+	      	</div>
+	  </section>
+	 </div> 
+	  <br/>
+	  <div class="container">
+<div class="container" style="padding-left: 150px">
 			<table style="width: 800px;" style="background-color: #FEF8DC">
 				<tr><td style="font-size: 20px;">구매상품정보</td></tr>
 				<tr><td style="height: 20px;"></td></tr>
@@ -241,32 +338,21 @@
 							</tr> 
 						</table>					
 					</div>
-				<br/><br/>
-				<section id="contact">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-8 mx-auto">
-							<h2></h2>
-							<p class="lead"></p>
-						</div>
-					</div>
-				</div>
-			</section>
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-		<!-- container -->
-			<p class="m-0 text-center text-white">Copyright&copy;Your
-				Website 2019</p>
-		</div>
-	</footer>
-		<!-- Bootstrap core JavaScript -->
-		<script src="<%=cp%>/mvproject/vendor/jquery/jquery.min.js"></script>
-		<script src="<%=cp%>/mvproject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<!-- Plugin JavaScript -->
-		<script src="<%=cp%>/mvproject/vendor/jquery-easing/jquery.easing.min.js"></script>
-	
-		<!-- Custom JavaScript for this theme -->
-		<script src="js/scrolling-nav.js"></script>
-	</body>
+	  </div>	
+ 
+  <!-- Bootstrap core JavaScript -->
+  <script src="<%=cp%>/mvproject/jquery/jquery.min.js"></script>
+  <script src="<%=cp%>/mvproject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="<%=cp%>/mvproject/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="<%=cp%>/mvproject/js/scrolling-nav.js"></script>
+  <br><br><br><br>
+<!-- 이벤트 이미지 처리 -->
+
+<div id="footer">
+	<img src="<%=cp%>/jspProject/image/underimage.png">
+</div>
+</body>
+
 </html>

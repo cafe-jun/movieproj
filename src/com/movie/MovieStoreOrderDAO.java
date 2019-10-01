@@ -60,14 +60,15 @@ public class MovieStoreOrderDAO {
 		return result;
 	}
 	//장바구니 리스트를 보여주는 메소드 
-	public List<MovieStoreOrderDTO> ordergetList(){		
+	public List<MovieStoreOrderDTO> ordergetList(String userId){		
 		List<MovieStoreOrderDTO> orderlists = new ArrayList<MovieStoreOrderDTO>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql; 
 		try {	
-			sql  = "select order_number,userid,movie_store.num num,saveFileName,subject,price,amount,storeSum,cardType,paymentDate ";
-			sql += " from movie_store,movie_store_order where movie_store.num=movie_store_order.num and paymentDate is null order by order_number ";
+			sql  = "select order_number,movie_store.num num,saveFileName,subject,price,amount,storeSum,cardType,paymentDate ";
+			sql += "from movie_store,movie_store_order where movie_store.num=movie_store_order.num and paymentDate is null ";
+			sql += "order by order_number ";
 			//sql += "where userid=?";
 			pstmt = conn.prepareStatement(sql);
 			//pstmt.setString(1,userid);
@@ -75,8 +76,7 @@ public class MovieStoreOrderDAO {
 			MovieStoreOrderDTO orderdto = null;
 			while(rs.next()) {
 				orderdto = new MovieStoreOrderDTO();
-				orderdto.setOrder_number(rs.getInt("order_number"));
-				orderdto.setUserid(rs.getString("userid"));			
+				orderdto.setOrder_number(rs.getInt("order_number"));		
 				orderdto.setNum(rs.getInt("num"));
 				orderdto.setSaveFileName(rs.getString("saveFileName"));
 				orderdto.setSubject(rs.getString("subject"));
@@ -96,17 +96,19 @@ public class MovieStoreOrderDAO {
 		return orderlists;	
 	}
 	
-	public List<MovieStoreOrderDTO> paymentgetList(){		
-		System.out.println("1");
+	public List<MovieStoreOrderDTO> paymentgetList(String userId){
+		System.out.println("paymentList userId : "+userId);
 		List<MovieStoreOrderDTO> orderlists = new ArrayList<MovieStoreOrderDTO>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql; 
 		try {	
 			sql  = "select order_number,userid,movie_store.num num,saveFileName,subject,price,amount,storeSum,cardType,to_char(paymentDate,'yyyy-mm-dd hh24:mi') paymentDate  ";
-			sql += " from movie_store,movie_store_order where movie_store.num=movie_store_order.num and paymentDate is not null order by order_number ";
+			sql += " from movie_store,movie_store_order where movie_store.num=movie_store_order.num and paymentDate is not null and userid=? order by order_number ";
 			//sql += "where userid=?";
+			System.out.println("paymentgetList : " + userId);
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userId);
 			//pstmt.setString(1,userid);
 			rs = pstmt.executeQuery();
 			MovieStoreOrderDTO orderdto = null;

@@ -70,6 +70,7 @@ public class MovieStoreDAO {
 		return maxNum;
 	}
 	public List<MovieStoreDTO> getLists(int start, int end){
+	
 		List<MovieStoreDTO> lists = new ArrayList<MovieStoreDTO>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -77,7 +78,7 @@ public class MovieStoreDAO {
 		try {
 			sql = "select * from (select rownum rnum, data.* from ";
 			sql+= "(select num,subject,saveFileName,originalFileName,price ";
-			sql+= "from movie_store order by num desc) data) where rnum>=? and rnum<=? ";
+			sql+= "from movie_store order by num desc) data) where rnum>=? and rnum<=?  ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);

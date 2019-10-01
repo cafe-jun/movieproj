@@ -9,14 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>이미지 게시판 </title>
-<link rel = "stylesheet" href="<%=cp%>/images/css/created.css">
-<link rel = "stylesheet" href="<%=cp%>/images/css/style.css">
-<script type="text/javascript" src="<%=cp%>/mvproject/vendor/bootstrap/js/image.js"></script>
+<link rel = "stylesheet" href="<%=cp%>/mvproject/css/created.css">
+<link rel = "stylesheet" href="<%=cp%>/mvproject/css/style.css">
+<script type="text/javascript" src="<%=cp%>/mvproject/js/image.js"></script>
 </head>
 <body>
 	<div id = "bbs">
 		<div id="bbs_title">
-			<b>스낵넣기 </b> 
+			<b>스낵넣기</b> 
 		</div>
 		<form action="" name="myForm" method="post" enctype="multipart/form-data">
 			<div id="bbsCreated">
@@ -31,15 +31,6 @@
 						<dt>가격</dt>
 						<dd><input type="text" name="price"  size="50" maxlength="100" class="boxTF" style="width: 350px"/></dd>					
 					</dl>
-				</div>	
-				<div class="bbsCreated_bottomLine">
-					<dl>
-						<dt>구분</dt>					
-					</dl>
-					<select name="storeType" class="selectField">
-						<option value="snack">스낵</option>
-						<option value="Gifticon">기프트콘</option>
-					</select>
 				</div>	
 				<div class="bbsCreated_bottomLine">
 					<dl>

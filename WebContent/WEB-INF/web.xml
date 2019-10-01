@@ -10,12 +10,12 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <!-- 프로젝트 Store mapping -->
- 	<servlet>
+      <servlet>
 	  	<servlet-name>storeServlet</servlet-name>
 	  	<servlet-class>com.movie.MovieStoreServlet</servlet-class>
 	  </servlet>
 	  <servlet-mapping>
-	  	<servlet-name>storeServlet</servlet-name>
+	  	<servlet-name>storeServlet</servlet-name>	
 	  	<url-pattern>/store/*</url-pattern>
 	  </servlet-mapping>
 	  <servlet>
