@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -41,25 +42,19 @@
 		f.submit();
 		
 	}
-
 </script>
 
 <style type="text/css">
 /* 기본 css */
 a:link { text-decoration: none;}
 a:hover { text-decoration: none;}
-
 .book {
-
 	font-size: 18px;
 	font-weight: bold;
 }
-
 .nav {
-
 	text-align: center;
 }
-
 #content {
 	
 	width: 1000px;
@@ -67,7 +62,6 @@ a:hover { text-decoration: none;}
 	margin-left: 400px;
 	margin-right: 500px;
 }
-
 #header { 
 	
 	
@@ -75,11 +69,8 @@ a:hover { text-decoration: none;}
 	height: 130px; 
 	padding-left: 300px;
 	padding-right: 300px; 
-
 }
-
 .head {
-
 	width: 1920px;
 	height: 130px; 
 	padding-left: 400px;
@@ -87,13 +78,10 @@ a:hover { text-decoration: none;}
 	margin-left: 0px;
 	margin-right: 0px; 
 }
-
 .login{
 	
 	font-size: 9pt;
-
 }
-
 </style>
 
 </head>
@@ -106,7 +94,7 @@ a:hover { text-decoration: none;}
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
 			</div>
 		</c:when> 
 		<c:otherwise>
@@ -114,7 +102,7 @@ a:hover { text-decoration: none;}
 				${sessionScope.customInfo.userId }님 반갑습니다.
 				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -150,7 +138,7 @@ a:hover { text-decoration: none;}
 <br/><br/><br/><br/><br/>
 
 <form action="" method="post" name="myForm">
-
+<div align="center">
 <table align="center" >
 	<tr>
 		<td align="center">
@@ -218,7 +206,7 @@ a:hover { text-decoration: none;}
 		</td>
 	</tr>
 </table>
-
+</div>
 <br/><br/><br/><br/>	
 
 <div id="footer">
@@ -238,12 +226,8 @@ a:hover { text-decoration: none;}
 <input type="text" name="userId" placeholder="아이디를 입력해주세요" size="30"/><br/>
 <input type="text" name="userBirth" placeholder="법정생년월일 6자리를 입력해주세요." size="30"/><br/>
 <input type="text" name="userTel" placeholder="휴대전화번호를 입력해주세요." size="30"/><br/>
-
 </form>
-
 <input type="button" value="비밀번호 찾기" onclick="findPwd();"/>
 <input type="button" value="취소" onclick="javascript:location.href='<%=cp%>/movie/login.do';"/>
-
-
 </body>
 </html> --%>

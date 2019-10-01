@@ -88,7 +88,6 @@ width: 180px;
 <body style="background-color: #FDFCF0;">
 
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
-<!-- 20190930 Ver 형상관리  -->
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -97,7 +96,7 @@ width: 180px;
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
 			</div>
 		</c:when> 
 		<c:otherwise>
@@ -105,7 +104,7 @@ width: 180px;
 				${sessionScope.customInfo.userId }님 반갑습니다.
 				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -139,6 +138,7 @@ width: 180px;
 <!-- 내용부분 -->
 
 <div id="content" align="center">
+<img style="padding-bottom: 30px;" src="<%=cp%>/jspProject/image/movie_selection.gif"/>
 	<div id="carousel1" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#carousel1" data-slide-to="0" class="active"></li>

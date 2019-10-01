@@ -175,7 +175,7 @@ width: 180px;
 <!-- Custom styles for this template -->
 <link href="css/scrolling-nav.css" rel="stylesheet">
 </head>
-<body id="page-top" >
+<body id="page-top" style="align-content: center; align-items: center; align-self: center;">
 <c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
@@ -183,7 +183,7 @@ width: 180px;
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
 			</div>
 		</c:when> 
 		<c:otherwise>
@@ -191,11 +191,13 @@ width: 180px;
 				${sessionScope.customInfo.userId }님 반갑습니다.
 				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
-	<img src="<%=cp%>/jspProject/image/Gline.png">
+
+	
+<img src="<%=cp%>/jspProject/image/Gline.png">
 <div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
 	<div>
 			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
@@ -208,10 +210,10 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	
@@ -223,17 +225,17 @@ width: 180px;
 	<div style="height: 50px;"></div>
 	<div class="container">
 		<section id="about">
-			<div class="row" style="height: 100px; margin-left: 250px;"">
+			<div class="row" style="height: 100px; margin-left: 280px;"">
 				<div class="col-lg-8 mx-auto">
 				<p style="font-size: 30px; margin-left: -100px;" align="left"><b>CGV+CJ ONE 통합회원 가입</b></p>
 				</div>
 			</div>
 		</section>
 
- <div id="bbs" style="margin-left: 300px;">
+ <div id="bbs" >
 	
-	<form action="" method="post" name="myForm">
-		
+	<form action="" method="post" name="myForm" >
+		<div style="padding-left: 380px;">
 		<div id="bbsCreated">
 		
 			<div class="bbsCreated_bottomLine">
@@ -293,8 +295,9 @@ width: 180px;
 			</div>
 
 		</div>
+		</div>
 		
-	<div id="bbsCreated_footer" style="margin-left: 25px;">
+	<div id="bbsCreated_footer" style="margin-left: 0px; padding-left: 380px;">
 
 			        
 			<input type="button" value="가입하기" class="btn btn-primary"" onclick="sendIt();"/>

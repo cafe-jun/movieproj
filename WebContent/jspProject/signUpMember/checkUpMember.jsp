@@ -16,7 +16,6 @@
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
 
 <script type="text/javascript">
-
 	function sendIt(){
 		
 		var f = document.myForm;
@@ -39,7 +38,6 @@
 			return;
 		}
 		f.userBirth.value = str;
-
 		
 		str = f.userTel.value;
 		str = str.trim();
@@ -54,25 +52,19 @@
 		f.submit();
 		
 	}
-
 </script>
 
 <style type="text/css">
 /* 기본 css */
 a:link { text-decoration: none;}
 a:hover { text-decoration: none;}
-
 .book {
-
 	font-size: 18px;
 	font-weight: bold;
 }
-
 .nav {
-
 	text-align: center;
 }
-
 #content {
 	
 	width: 1000px;
@@ -80,7 +72,6 @@ a:hover { text-decoration: none;}
 	margin-left: 400px;
 	margin-right: 500px;
 }
-
 #header { 
 	
 	
@@ -88,11 +79,8 @@ a:hover { text-decoration: none;}
 	height: 130px; 
 	padding-left: 300px;
 	padding-right: 300px; 
-
 }
-
 .head {
-
 	width: 1920px;
 	height: 130px; 
 	padding-left: 400px;
@@ -100,13 +88,10 @@ a:hover { text-decoration: none;}
 	margin-left: 0px;
 	margin-right: 0px; 
 }
-
 .login{
 	
 	font-size: 9pt;
-
 }
-
 </style>
 
 </head>
@@ -119,7 +104,7 @@ a:hover { text-decoration: none;}
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
 			</div>
 		</c:when> 
 		<c:otherwise>
@@ -127,7 +112,7 @@ a:hover { text-decoration: none;}
 				${sessionScope.customInfo.userId }님 반갑습니다.
 				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -164,7 +149,7 @@ a:hover { text-decoration: none;}
 <br/><br/><br/><br/><br/>
 
 <form action="" method="post" name="myForm">
-
+<div align="center">
 <table align="center" >
 	<tr>
 		<td align="center">
@@ -231,7 +216,7 @@ a:hover { text-decoration: none;}
 		</td>
 	</tr>
 </table>
-
+</div>
 <div id="footer">
 	<img src="<%=cp%>/jspProject/image/underimage.png">
 </div>
@@ -245,20 +230,14 @@ a:hover { text-decoration: none;}
 <%-- 
 <font size="7"> CGV+CJ ONE 통합회원 가입</font><br/>
 <font size="3"> 통합 아이디로 CJ ONE 브랜드 혜택도 받고! 포인트도 쌓고!</font><br/>
-
 <form action="" method="post" name="myForm">
 	<input type="text" name="userName" placeholder="이름을 입력해주세요" size="30"/><br/>
 	<input type="text" name="userBirth" placeholder="법정생년월일 6자리를 입력해주세요." size="30"/>[YYYYMMDD]<br/>
 	<input type="text" name="userTel" placeholder="휴대전화번호를 입력해주세요." size="30"/>['-'를 제외하고 입력하세요]<br/>
-
-
 <input type="button" value="가입여부 확인" onclick="sendIt();"/>
 <input type="button" value="회원가입" onclick="javascript:location.href='<%=cp%>/movie/signUp.do';"/>
 <input type="button" value="로그인" onclick="javascript:location.href='<%=cp%>/movie/login.do';"/>
-
 </form>
-
 <br/>${message }
-
 </body>
 </html> --%>
