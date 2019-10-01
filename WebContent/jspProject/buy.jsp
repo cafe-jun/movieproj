@@ -135,11 +135,56 @@ height: 28px;
 	    	}
 		}
 	}
-	function sendIt() {
-		var f = document.myForms;
-		f.action= '<%=cp%>/movie/buy_ok.do';
-		f.submit();
+	if(!f.num1.value){
+		alert("카드번호를 입력해주세요.");
+		f.num1.focus();
+		return;
 	}
+	
+	if(!f.num2.value){
+		alert("카드번호를 입력해주세요.");
+		f.num2.focus();
+		return;
+	}
+	
+	if(!f.num3.value){
+		alert("카드번호를 입력해주세요.");
+		f.num3.focus();
+		return;
+	}
+	
+	if(!f.num4.value){
+		alert("카드번호를 입력해주세요.");
+		f.num4.focus();
+		return;
+	}
+	
+	if(!f.month.value){
+		alert("카드 유효기간을 정확히 입력해주세요.");
+		f.month.focus();
+		return;
+	}
+	if(!f.year.value){
+		alert("카드 유효기간을 정확히 입력해주세요.");
+		f.year.focus();
+		return;
+	}
+	
+	if(!f.password.value){
+		alert("비밀번호를 입력해주세요.");
+		f.password.focus();
+		return;
+	}
+	
+	if(!f.birth.value){
+		alert("생년월일을 입력해주세요.");
+		f.birth.focus();
+		return;
+	}
+	
+	alert("결제를 진행할까요?");
+	f.action = "<%=cp%>/movie/buy_ok.do";
+	f.submit();
 
 </script>
 
@@ -201,7 +246,6 @@ height: 28px;
 				<div id="nav" align="left" style="margin-right: 350px;">
 				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
 			<br><br>
 				</div>
@@ -497,7 +541,7 @@ height: 28px;
 	
 	
 	<td width="200" align="left">
-		<a href="javascript:alert('결제를 진행할까요?')"><img alt="" src="<%=cp%>/jspProject/data/image/pay.png" onclick="sendIt();"> <!-- <input type="button"  value="결제하기" onclick="sendIt();"> --></a>
+		<img alt="" src="<%=cp%>/jspProject/data/image/pay.png" onclick="sendIt();">
 	</td>
 	
 	<td width="700" align="left"></td>

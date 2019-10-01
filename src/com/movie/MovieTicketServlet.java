@@ -512,7 +512,9 @@ public class MovieTicketServlet extends HttpServlet{
 					HttpSession session=req.getSession();
 					CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
 					String userId = customInfo.getUserId();
-					
+
+					Random rd=new Random();
+					int reserveNum = rd.nextInt(10000)+1;
 					List<Movie_PaymentDTO> lists=new ArrayList<>();
 					for(int i=0;i<10;i++){
 						for(int j=1;j<=10;j++){
@@ -524,16 +526,52 @@ public class MovieTicketServlet extends HttpServlet{
 								System.out.println(((CustomInfo)session.getAttribute("customInfo")).getUserId());
 								dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
 								dto.setSitnum(((i*10)+j));
-								Random rd=new Random();
-								int reserveNum = rd.nextInt(10000)+1;
 								dto.setReserveNum(reserveNum);
 								lists.add(dto);
 								mpdao.insert(dto);
 							}
 						}
 					}
+
+					String movietype = "";
+					String timetype = "";
+					int sitnum = 0;
+					int roomtype = 0;
+					int cost = 0;
+					session.setAttribute("lists", lists);
+					Movie_selectDAO msdao=new Movie_selectDAO(conn);
+					for(Movie_PaymentDTO mpdto:lists) {
+						movietype=mpdto.getMovietype();
+						timetype=mpdto.getTimetype();
+						roomtype=mpdto.getRoomtype();
+						cost+=msdao.getcost(movietype, timetype, roomtype);
+						
+						sitnum=mpdto.getSitnum();
+					}
+					
+			/*		Movie_PaymentDAO paymentdao = new Movie_PaymentDAO(DBCPConn.getConnection());
+					Movie_PaymentDTO paymentdto = new Movie_PaymentDTO();
+					paymentdto.setUserId(userId);
+					paymentdto.setTimetype(timetype);
+					paymentdto.setRoomtype(roomtype);
+					paymentdto.setSitnum(sitnum);
+					paymentdto.setPayMethod(payMethod);*/
+
+					int member=lists.size();
+				
+					req.setAttribute("member", member);
+					req.setAttribute("lists", lists);
+					req.setAttribute("userId", userId);
+					req.setAttribute("movietype", movietype);
+					req.setAttribute("timetype", timetype);
+					req.setAttribute("sitnum", sitnum);
+					req.setAttribute("roomtype", roomtype);
+					req.setAttribute("cost", cost);
+
+					url ="/jspProject/buy.jsp";
+					forward(req, resp, url);
+					//resp.sendRedirect(url);
 				}
-		
 		else if(uri.indexOf("updated.do")!=-1) {
 			
 			HttpSession session = req.getSession();
@@ -630,10 +668,9 @@ public class MovieTicketServlet extends HttpServlet{
 			forward(req, resp, url);
 			//resp.sendRedirect(url);
 		}
-		
 		//결제페이지
 		else if(uri.indexOf("buy.do")!=-1) {
-			
+
 			/*HttpSession session = req.getSession();
 			List<Movie_PaymentDTO> lists = (List<Movie_PaymentDTO>)session.getAttribute("lists");
 
@@ -668,83 +705,83 @@ public class MovieTicketServlet extends HttpServlet{
 			String payMethod = req.getParameter("payMethod");
 			
 			req.setAttribute("payMethod", payMethod);
-			
+
 			url = "/jspProject/buy.jsp";
 			forward(req, resp, url);
-			
-		}else if(uri.indexOf("buy_ok.do")!=-1) {
-			
-			/*Movie_completeDTO dto = new Movie_completeDTO();
-			Movie_completeDAO dao2 = new Movie_completeDAO(conn);
-			 */Movie_PaymentDAO paymentdao = new Movie_PaymentDAO(conn);
-			 Random rd = new Random();
-			 
-			 //			for(int i=0;i<10000;i++) {
-			 int reserveNum = rd.nextInt(10000)+1;
-			 //				System.out.println(reserveNum);
-			 //			}
-			 //reserveNum=rd.nextInt();
-			 String userId = "";
-			 String movietype = "";
-			 String timetype = "";
-			 String userid="";
-			 int sitnum = 0;
-			 int roomtype = 0;
-			 int cost = 0;			
-			 HttpSession session = req.getSession();
-			 CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
-			 userId = customInfo.getUserId();
-			 System.out.println("payment userid : "+userId);
-			 String payMethod = req.getParameter("payMethod");
-			 System.out.println("paymentMethod : "+payMethod);
-			 int result =  paymentdao.paymentUpdateData(userId, payMethod);
-			 
-//			if(result == 1) {
-//				System.out.println("업데이트 성공 ");
-//			}else {
-//				System.out.println("업데이트 실패 ");
-//			}
-			 
-			 /*List<Movie_PaymentDTO> lists = (List<Movie_PaymentDTO>)session.getAttribute("lists");
-			for(Movie_PaymentDTO mpdto:lists) {
-				movietype=mpdto.getMovietype();
-				timetype=mpdto.getTimetype();
-				roomtype=mpdto.getRoomtype();
-				sitnum=mpdto.getSitnum();
-				userid=mpdto.getUserId();
-				Movie_PaymentDAO mpdao=new Movie_PaymentDAO(conn);
-				mpdao.insert(mpdto);
-			}
-			  */
-			 /*dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
-			dto.setReserveNum(reserveNum);
-			dto.setMovietype(movietype);
-			dto.setTimetype(timetype);
-			dto.setRoomtype(roomtype);
-			System.out.println("paymethod : "+req.getParameter(payMethod));
-			dto.setPayMethod(payMethod);*/
-			 
-			 /*Movie_selectDAO msdao=new Movie_selectDAO(conn);
-			cost=msdao.getcost(movietype, timetype, roomtype);
-			dto.setCost(cost);*/
-			 
-			 /*int member=lists.size();
-			req.setAttribute("member", member);
-			  */
-			 /*	
-			  * for(Movie_PaymentDTO mpdto:lists) {
-			dto.setSitnum(mpdto.getSitnum());
-			dao2.insertData(dto);
-			}*/
-			 //dto.setPayMethod(req.getParameter("payMethod"));
-			 //dto.setPayInfo(req.getParameter("payInfo"));
-			 
-			 //dao2.insertData(dto);
-			 url = cp + "/movie/pay.do";
-			 resp.sendRedirect(url);
-			 
+
+		}
+		
+
+	else if(uri.indexOf("buy_ok.do")!=-1) {
+		
+		/*Movie_completeDTO dto = new Movie_completeDTO();
+		Movie_completeDAO dao2 = new Movie_completeDAO(conn);
+		*/Movie_PaymentDAO paymentdao = new Movie_PaymentDAO(conn);
+		Random rd = new Random();
+
+		//			for(int i=0;i<10000;i++) {
+		int reserveNum = rd.nextInt(10000)+1;
+		//				System.out.println(reserveNum);
+		//			}
+		//reserveNum=rd.nextInt();
+		String userId = "";
+		String movietype = "";
+		String timetype = "";
+		String userid="";
+		int sitnum = 0;
+		int roomtype = 0;
+		int cost = 0;			
+		HttpSession session = req.getSession();
+		CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
+		userId = customInfo.getUserId();
+		System.out.println("payment userid : "+userId);
+		String payMethod = req.getParameter("payMethod");
+		System.out.println("paymentMethod : "+payMethod);
+		int result =  paymentdao.paymentUpdateData(userId, payMethod);
+		
+
+		
+		/*List<Movie_PaymentDTO> lists = (List<Movie_PaymentDTO>)session.getAttribute("lists");
+		for(Movie_PaymentDTO mpdto:lists) {
+			movietype=mpdto.getMovietype();
+			timetype=mpdto.getTimetype();
+			roomtype=mpdto.getRoomtype();
+			sitnum=mpdto.getSitnum();
+			userid=mpdto.getUserId();
+			Movie_PaymentDAO mpdao=new Movie_PaymentDAO(conn);
+			mpdao.insert(mpdto);
+		}
+		*/
+		/*dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
+		dto.setReserveNum(reserveNum);
+		dto.setMovietype(movietype);
+		dto.setTimetype(timetype);
+		dto.setRoomtype(roomtype);
+		System.out.println("paymethod : "+req.getParameter(payMethod));
+		dto.setPayMethod(payMethod);*/
+		
+		/*Movie_selectDAO msdao=new Movie_selectDAO(conn);
+		cost=msdao.getcost(movietype, timetype, roomtype);
+		dto.setCost(cost);*/
+		
+		/*int member=lists.size();
+		req.setAttribute("member", member);
+		*/
+	/*	
+	 * for(Movie_PaymentDTO mpdto:lists) {
+		dto.setSitnum(mpdto.getSitnum());
+		dao2.insertData(dto);
+		}*/
+		//dto.setPayMethod(req.getParameter("payMethod"));
+		//dto.setPayInfo(req.getParameter("payInfo"));
+
+		//dao2.insertData(dto);
+		url = cp + "/movie/pay.do";
+		resp.sendRedirect(url);
+
+		
 		}else if(uri.indexOf("pay.do")!=-1) {
-			
+
 			/*String userId = "";
 			String movietype = "";
 			String timetype = "";
@@ -766,7 +803,7 @@ public class MovieTicketServlet extends HttpServlet{
 				mpdao.insert(mpdto);
 			}*/
 			HttpSession session = req.getSession();
-			
+
 			List<Movie_PaymentDTO> lists = (List<Movie_PaymentDTO>)session.getAttribute("lists");
 			
 			String userId = ((CustomInfo)session.getAttribute("customInfo")).getUserId();
@@ -792,9 +829,9 @@ public class MovieTicketServlet extends HttpServlet{
 				cost+=msdao.getcost(movietype, timetype, roomtype);
 				sitString+=mcdto.getSitnum()+" ";
 			}
-			
+
 			int member=lists.size();
-			
+
 			//req.setAttribute("listss", listss);
 			req.setAttribute("userId", userId);
 			req.setAttribute("reserveNum", reserveNum);
@@ -805,10 +842,18 @@ public class MovieTicketServlet extends HttpServlet{
 			req.setAttribute("cost", cost);
 			req.setAttribute("member", member);
 			req.setAttribute("payMethod", payMethod);
-			
+
 			url = "/jspProject/pay.jsp";
 			forward(req, resp, url);
-			
+
 		}
 	}
 }
+
+
+
+
+
+
+
+

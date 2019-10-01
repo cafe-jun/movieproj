@@ -10,7 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제완료</title>
-
 <style type="text/css">
 
 a { text-decoration: none}
@@ -112,9 +111,9 @@ border: 1px;
 					<img src="<%=cp %>/jspProject/data/image/ticket.png">
 				</h3>
 				<div id="nav" align="left" style="margin-right: 350px;">
-				<a href="<%=cp %>/cgv/movie.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/cgv/booking.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/cgv/event.do" style="color: black"><b>스토어</b></a>
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	
