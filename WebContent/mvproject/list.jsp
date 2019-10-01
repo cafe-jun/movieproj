@@ -199,16 +199,8 @@ width: 180px;
 	<img src="<%=cp%>/jspProject/image/underimage.png">
 </div>
 </body>
-
-=======
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
-	request.setCharacterEncoding("UTF-8");	
-	String cp = request.getContextPath();
-	int count = 0;
-%>
-<!DOCTYPE html>
+</html>
+<%-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -305,4 +297,4 @@ width: 180px;
 </body>
 
 >>>>>>> refs/remotes/origin/master
-</html>
+</html> --%>
