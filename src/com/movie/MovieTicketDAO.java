@@ -20,17 +20,23 @@ public class MovieTicketDAO {
 		String sql;
 
 		try {
-			sql = "insert into movie_users (userName, userId, userPwd, ";
-			sql+= "userBirth,userTel,userEmail) values (?,?,?,?,?,?) ";
+
+			sql = "insert into movie_users(userName, userId, userPwd, ";
+			sql+= "userBirth, userTel, userEmail) values (?,?,?,?,?,?) ";
+
 			pstmt = conn.prepareStatement(sql);
+
 			pstmt.setString(1, dto.getUserName());
 			pstmt.setString(2, dto.getUserId());
 			pstmt.setString(3, dto.getUserPwd());
 			pstmt.setString(4, dto.getUserBirth());
 			pstmt.setString(5, dto.getUserTel());
 			pstmt.setString(6, dto.getUserEmail());
+
+
 			result = pstmt.executeUpdate();
 			pstmt.close();
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -113,6 +119,38 @@ public class MovieTicketDAO {
 			System.out.println(e.toString());
 		}
 		return dto;
+	}
+	
+	
+	public int update(MovieTicketDTO dto) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			
+			sql = "update movie_users set userName=?, userPwd=?, ";
+			sql+= "userBirth=?, userTel=?, userEmail=? where userId=? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getUserName());
+			pstmt.setString(2, dto.getUserPwd());
+			pstmt.setString(3, dto.getUserBirth());
+			pstmt.setString(4, dto.getUserTel());
+			pstmt.setString(5, dto.getUserEmail());
+			pstmt.setString(6, dto.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
 	}
 
 
