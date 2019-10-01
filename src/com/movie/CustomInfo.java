@@ -1,5 +1,7 @@
 package com.movie;
 
+import java.util.stream.IntStream;
+
 public class CustomInfo {
 	
 	private String userId;
@@ -11,5 +13,6 @@ public class CustomInfo {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
+	
+	
 }
