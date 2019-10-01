@@ -17,7 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.util.DBCPConn;
 import com.util.FileManager;
-import com.util.MyUtil;
+import com.util.Myutil;
 
 public class MovieStoreServlet extends HttpServlet{
 
@@ -42,7 +42,7 @@ public class MovieStoreServlet extends HttpServlet{
 		MovieStoreOrderDAO orderdao = new MovieStoreOrderDAO(DBCPConn.getConnection());
 		MovieTicketDAO ticketdao = new MovieTicketDAO(DBCPConn.getConnection());
 		
-		MyUtil myUtil = new MyUtil();
+		Myutil Myutil = new Myutil();
 		String url;
 		String root = getServletContext().getRealPath("/");
 		String path = root+File.separator+"pds"+File.separator +"storeFile";

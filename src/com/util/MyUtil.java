@@ -3,7 +3,7 @@ package com.util;
 
 //page 처리를 하는 클래스 입니다. 
 
-public class MyUtil {
+public class Myutil {
 	
 	//전체 페이지수 구하기 
 	public int getPageCount(int numPerPage,int dataCount) {

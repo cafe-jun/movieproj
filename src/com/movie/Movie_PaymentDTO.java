@@ -31,12 +31,26 @@ public class Movie_PaymentDTO {
 	public void setUserId(String userid) {
 		this.userId = userid;
 	}
-	
 	String movietype;
 	String timetype;
 	int roomtype;
 	int sitnum;
 	String userId;
+	String payMethod;
+	int reserveNum;
+	
+	public int getReserveNum() {
+		return reserveNum;
+	}
+	public void setReserveNum(int reserveNum) {
+		this.reserveNum = reserveNum;
+	}
+	public String getPayMethod() {
+		return payMethod;
+	}
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
 	
 
 }

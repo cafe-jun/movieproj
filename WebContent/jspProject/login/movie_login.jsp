@@ -15,6 +15,7 @@
 
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
 <script type="text/javascript">
+
  	window.onload=function(){
 		if(getCookie("userId")){
 			document.myForm.userId.value=getCookie("userId");
@@ -73,7 +74,7 @@
 			setCookie("userId",f.userId.value,0);
 		}
 	 	
-	 	f.action = "<%=cp %>/movie/login_ok.do";
+	 	f.action = "<%=cp%>/movie/login_ok.do";
 		f.submit();
 		 
 	}

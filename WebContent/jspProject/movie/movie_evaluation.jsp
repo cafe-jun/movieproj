@@ -3,9 +3,10 @@
 <%@page import="com.movie.Movie_AppraisalDTO"%>
 <%@page import="com.util.DBCPConn"%>
 <%@page import="java.util.List"%>
-<%@page import="com.util.MyUtil"%>
+<%@page import="com.util.Myutil"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%request.setCharacterEncoding("UTF-8");
 String cp =request.getContextPath();
 List<Movie_AppraisalDTO> lists=(List<Movie_AppraisalDTO>)request.getAttribute("lists");
