@@ -1,10 +1,9 @@
 package com.movie;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,388 +13,412 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.util.DBCPConn;
-import com.util.Myutil;
+import com.util.MyUtil;
 
-public class MovieTicketServlet extends HttpServlet {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MovieTicketServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doPost(req, resp);
 	}
-
-	// forwardingï¿½ìŠœ ï§ë¶¿ëƒ¼ï¿½ë±¶
-	protected void forward(HttpServletRequest req,HttpServletResponse resp, String url) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher(url);
+	protected void forward(HttpServletRequest req, HttpServletResponse resp,String url) throws ServletException, IOException {
+		RequestDispatcher rd=req.getRequestDispatcher(url);
 		rd.forward(req, resp);
 	}
-
-	@SuppressWarnings("null")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
-		req.setCharacterEncoding("UTF-8");
+		//req.setCharacterEncoding("UTF-8");
 
-		Connection conn = DBCPConn.getConnection();
-
-		MovieTicketDAO dao = new MovieTicketDAO(conn);
-		Myutil myutil=new Myutil();
 		String cp = req.getContextPath();
-		String uri = req.getRequestURI();
+		Connection conn=DBCPConn.getConnection();
+		//----------------------------------------------------------------------------------------------
+		//----------------------------------------------------------------------------------------------
 
-		String url;	//forwadingï¿½ìŠœ
-		// íšŒì›ê°€ì…
-				if(uri.indexOf("signUp.do")!=-1) {		//indexOfëŠ” ê°’ì„ ëª»ì°¾ìœ¼ë©´ -1ì„ ë°˜í™˜í•œë‹¤.
+		MyUtil myutil=new MyUtil();
+		String uri=req.getRequestURI();
 
-					url = "/jspProject/signUpMember/signUpMember.jsp";
-					forward(req,resp,url);
-				}
+		String url;
+		MovieTicketDAO dao = new MovieTicketDAO(conn);
 
-				else if(uri.indexOf("signUp_ok.do")!=-1) {
 
-					MovieTicketDTO dto = new MovieTicketDTO();
+		// È¸¿ø°¡ÀÔ
+		if(uri.indexOf("signUp.do")!=-1) {		//indexOf´Â °ªÀ» ¸øÃ£À¸¸é -1À» ¹İÈ¯ÇÑ´Ù.
 
-					dto.setUserName(req.getParameter("userName"));
-					dto.setUserId(req.getParameter("userId"));
-					dto.setUserPwd(req.getParameter("userPwd"));
-					dto.setUserBirth(req.getParameter("userBirth"));
-					dto.setUserTel(req.getParameter("userTel"));
-					dto.setUserEmail(req.getParameter("userEmail"));
+			url = "/jspProject/signUpMember/signUpMember.jsp";
+			forward(req,resp,url);
+		}
 
-					dao.insertData(dto);
+		else if(uri.indexOf("signUp_ok.do")!=-1) {
 
-					url = cp + "/movie/login.do";	
-					resp.sendRedirect(url);
-				}
+			MovieTicketDTO dto = new MovieTicketDTO();
 
-				else if(uri.indexOf("login.do")!=-1) {
+			dto.setUserName(req.getParameter("userName"));
+			dto.setUserId(req.getParameter("userId"));
+			dto.setUserPwd(req.getParameter("userPwd"));
+			dto.setUserBirth(req.getParameter("userBirth"));
+			dto.setUserTel(req.getParameter("userTel"));
+			dto.setUserEmail(req.getParameter("userEmail"));
 
-					url = "/jspProject/login/movie_login.jsp";
-					forward(req,resp,url);
-				}
+			dao.insertData(dto);
 
-				else if (uri.indexOf("login_ok.do")!=-1){
+			url = cp + "/movie/login.do";	
+			resp.sendRedirect(url);
+		}
 
-					String userId = req.getParameter("userId");
-					String userPwd = req.getParameter("userPwd");
+		else if(uri.indexOf("login.do")!=-1) {
 
-					System.out.println(userId);	
+			url = "/jspProject/login/movie_login.jsp";
+			forward(req,resp,url);
+		}
 
-					MovieTicketDTO dto = dao.getReadData(userId);
+		else if (uri.indexOf("login_ok.do")!=-1){
 
-					if(dto==null||!dto.getUserPwd().equals(userPwd)) {
+			String userId = req.getParameter("userId");
+			String userPwd = req.getParameter("userPwd");
 
-						req.setAttribute("message", "ì•„ì´ë”” ë˜ëŠ” íŒ¨ìŠ¤ì›Œë“œê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤. í™•ì¸ í›„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+			System.out.println(userId);	
 
-						url = "/jspProject/login/movie_login.jsp";
-						forward(req,resp,url);					
-						return;
-					}
+			MovieTicketDTO dto = dao.getReadData(userId);
 
-					//ì„¸ì…˜ì— id ì˜¬ë ¤ë‘ 
-					HttpSession session = req.getSession(true);
+			if(dto==null||!dto.getUserPwd().equals(userPwd)) {
 
-					CustomInfo info = new CustomInfo();
+				req.setAttribute("message", "¾ÆÀÌµğ ¶Ç´Â ÆĞ½º¿öµå°¡ ¸ÂÁö ¾Ê½À´Ï´Ù. È®ÀÎ ÈÄ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 
-					info.setUserId(dto.getUserId());
+				url = "/jspProject/login/movie_login.jsp";
+				forward(req,resp,url);					
+				return;
+			}
 
-					System.out.println(info.getUserId());
+			//¼¼¼Ç¿¡ id ¿Ã·ÁµÒ
+			HttpSession session = req.getSession(true);
 
-					session.setAttribute("customInfo", info);
+			CustomInfo info = new CustomInfo();
 
-					url = "/study/movie/main.do";
-					resp.sendRedirect(url);
+			info.setUserId(dto.getUserId());
 
-				}
+			System.out.println(info.getUserId());
 
+			session.setAttribute("customInfo", info);
 
-				// ì•„ì´ë”” ì°¾ê¸° êµ¬ì—­
-				else if(uri.indexOf("findId.do")!=-1) {
+			url = "/study/movie/main.do";
+			resp.sendRedirect(url);
 
-					url = "/jspProject/findId/movie_fidId.jsp";
-					forward(req,resp,url);
-				}
+		}
 
-				else if(uri.indexOf("findId_ok.do")!=-1) {
 
-					String userName = req.getParameter("userName");
-					String userBirth = req.getParameter("userBirth");
-					String userTel = req.getParameter("userTel");
+		// ¾ÆÀÌµğ Ã£±â ±¸¿ª
+		else if(uri.indexOf("findId.do")!=-1) {
 
-					MovieTicketDTO dto = dao.getReadDataByName(userName);
+			url = "/jspProject/findId/movie_fidId.jsp";
+			forward(req,resp,url);
+		}
 
-					if(dto==null||!dto.getUserName().equals(userName)) {
+		else if(uri.indexOf("findId_ok.do")!=-1) {
 
-						req.setAttribute("message1", "ì•„ì´ë””");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
-						req.setAttribute("message4", "findPwd.do';");
-						req.setAttribute("message5", "ë¡œê·¸ì¸");
-						req.setAttribute("message6", "login.do';");
+			String userName = req.getParameter("userName");
+			String userBirth = req.getParameter("userBirth");
+			String userTel = req.getParameter("userTel");
 
-						url = "/movie/findIdConf.do";
-						forward(req,resp,url);
+			MovieTicketDTO dto = dao.getReadDataByName(userName);
 
-						return;		// id/Name ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
+			if(dto==null||!dto.getUserName().equals(userName)) {
 
-					}
+				req.setAttribute("message1", "¾ÆÀÌµğ");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "ºñ¹Ğ¹øÈ£ Ã£±â");
+				req.setAttribute("message4", "findPwd.do';");
+				req.setAttribute("message5", "·Î±×ÀÎ");
+				req.setAttribute("message6", "login.do';");
 
-					if(dto==null||!dto.getUserBirth().equals(userBirth)) {
+				url = "/movie/findIdConf.do";
+				forward(req,resp,url);
 
-						req.setAttribute("message1", "ì•„ì´ë””");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
-						req.setAttribute("message4", "findPwd.do';");
-						req.setAttribute("message5", "ë¡œê·¸ì¸");
-						req.setAttribute("message6", "login.do';");
+				return;		// id/Name °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
 
-						url = "/movie/findIdConf.do";
-						forward(req,resp,url);
+			}
 
-						return;		// id/Birth ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
+			if(dto==null||!dto.getUserBirth().equals(userBirth)) {
 
-					}
+				req.setAttribute("message1", "¾ÆÀÌµğ");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "ºñ¹Ğ¹øÈ£ Ã£±â");
+				req.setAttribute("message4", "findPwd.do';");
+				req.setAttribute("message5", "·Î±×ÀÎ");
+				req.setAttribute("message6", "login.do';");
 
-					if(dto==null||!dto.getUserTel().equals(userTel)) {
+				url = "/movie/findIdConf.do";
+				forward(req,resp,url);
 
-						// classì—ì„œ jspë¡œ ë„˜ê¸¸ë•Œ setAttributeë¡œ ë„˜ê¸´ë‹¤.
-						req.setAttribute("message1", "ì•„ì´ë””");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
-						req.setAttribute("message4", "findPwd.do';");
-						req.setAttribute("message5", "ë¡œê·¸ì¸");
-						req.setAttribute("message6", "login.do';");
+				return;		// id/Birth °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
 
-						url = "/movie/findIdConf.do";
-						forward(req,resp,url);
+			}
 
-						return;		// id/tel ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
-					}
+			if(dto==null||!dto.getUserTel().equals(userTel)) {
 
-					req.setAttribute("message1", "ì•„ì´ë””");
-					req.setAttribute("message2", "í™•ì¸í•˜ì‹  ì•„ì´ë””ëŠ” [" + dto.getUserId() + "] ì…ë‹ˆë‹¤");
-					req.setAttribute("message3", "ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
-					req.setAttribute("message4", "findPwd.do';");
-					req.setAttribute("message5", "ë¡œê·¸ì¸");
-					req.setAttribute("message6", "login.do';");
+				// class¿¡¼­ jsp·Î ³Ñ±æ¶§ setAttribute·Î ³Ñ±ä´Ù.
+				req.setAttribute("message1", "¾ÆÀÌµğ");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "ºñ¹Ğ¹øÈ£ Ã£±â");
+				req.setAttribute("message4", "findPwd.do';");
+				req.setAttribute("message5", "·Î±×ÀÎ");
+				req.setAttribute("message6", "login.do';");
 
-					url = "/movie/findIdConf.do";
-					forward(req,resp,url);
+				url = "/movie/findIdConf.do";
+				forward(req,resp,url);
 
-				}
+				return;		// id/tel °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
+			}
 
-				else if(uri.indexOf("findIdConf.do")!=-1) {
+			req.setAttribute("message1", "¾ÆÀÌµğ");
+			req.setAttribute("message2", "È®ÀÎÇÏ½Å ¾ÆÀÌµğ´Â [" + dto.getUserId() + "] ÀÔ´Ï´Ù");
+			req.setAttribute("message3", "ºñ¹Ğ¹øÈ£ Ã£±â");
+			req.setAttribute("message4", "findPwd.do';");
+			req.setAttribute("message5", "·Î±×ÀÎ");
+			req.setAttribute("message6", "login.do';");
 
-					url = "/jspProject/movie_confirm.jsp";
-					forward(req,resp,url);
-				}
+			url = "/movie/findIdConf.do";
+			forward(req,resp,url);
 
+		}
 
-				// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° êµ¬ì—­
-				else if(uri.indexOf("findPwd.do")!=-1) {
+		else if(uri.indexOf("findIdConf.do")!=-1) {
 
-					url = "/jspProject/findPwd/movie_fidPwd.jsp";
-					forward(req,resp,url);
-				}
+			url = "/jspProject/movie_confirm.jsp";
+			forward(req,resp,url);
+		}
 
 
-				else if(uri.indexOf("findPwd_ok.do")!=-1) {
+		// ºñ¹Ğ¹øÈ£ Ã£±â ±¸¿ª
+		else if(uri.indexOf("findPwd.do")!=-1) {
 
-					String userId = req.getParameter("userId");
-					String userBirth = req.getParameter("userBirth");
-					String userTel = req.getParameter("userTel");
+			url = "/jspProject/findPwd/movie_fidPwd.jsp";
+			forward(req,resp,url);
+		}
 
-					MovieTicketDTO dto = dao.getReadData(userId);
 
-					if(dto==null||!dto.getUserId().equals(userId)) {
+		else if(uri.indexOf("findPwd_ok.do")!=-1) {
 
-						req.setAttribute("message1", "ì•„ì´ë””");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ì•„ì´ë”” ì°¾ê¸°");
-						req.setAttribute("message4", "findId.do';");
-						req.setAttribute("message5", "ë¡œê·¸ì¸");
-						req.setAttribute("message6", "login.do';");
+			String userId = req.getParameter("userId");
+			String userBirth = req.getParameter("userBirth");
+			String userTel = req.getParameter("userTel");
 
-						url = "/movie/findPwdConf.do";
-						forward(req,resp,url);
+			MovieTicketDTO dto = dao.getReadData(userId);
 
-						return;		// id/Name ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
+			if(dto==null||!dto.getUserId().equals(userId)) {
 
-					}
+				req.setAttribute("message1", "¾ÆÀÌµğ");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "¾ÆÀÌµğ Ã£±â");
+				req.setAttribute("message4", "findId.do';");
+				req.setAttribute("message5", "·Î±×ÀÎ");
+				req.setAttribute("message6", "login.do';");
 
-					if(dto==null||!dto.getUserBirth().equals(userBirth)) {
+				url = "/movie/findPwdConf.do";
+				forward(req,resp,url);
 
-						req.setAttribute("message1", "ì•„ì´ë””");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ì•„ì´ë”” ì°¾ê¸°");
-						req.setAttribute("message4", "findId.do';");
-						req.setAttribute("message5", "ë¡œê·¸ì¸");
-						req.setAttribute("message6", "login.do';");
+				return;		// id/Name °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
 
-						url = "/movie/findPwdConf.do";
-						forward(req,resp,url);
+			}
 
-						return;		// id/Birth ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
+			if(dto==null||!dto.getUserBirth().equals(userBirth)) {
 
-					}
+				req.setAttribute("message1", "¾ÆÀÌµğ");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "¾ÆÀÌµğ Ã£±â");
+				req.setAttribute("message4", "findId.do';");
+				req.setAttribute("message5", "·Î±×ÀÎ");
+				req.setAttribute("message6", "login.do';");
 
-					if(dto==null||!dto.getUserTel().equals(userTel)) {
+				url = "/movie/findPwdConf.do";
+				forward(req,resp,url);
 
-						// classì—ì„œ jspë¡œ ë„˜ê¸¸ë•Œ setAttributeë¡œ ë„˜ê¸´ë‹¤.
-						req.setAttribute("message1", "ì•„ì´ë””");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ì•„ì´ë”” ì°¾ê¸°");
-						req.setAttribute("message4", "findId.do';");
-						req.setAttribute("message5", "ë¡œê·¸ì¸");
-						req.setAttribute("message6", "login.do';");
+				return;		// id/Birth °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
 
-						url = "/movie/findPwdConf.do";
-						forward(req,resp,url);
+			}
 
-						return;		// id/tel ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
-					}
+			if(dto==null||!dto.getUserTel().equals(userTel)) {
 
-					req.setAttribute("message1", "ì•„ì´ë””");
-					req.setAttribute("message2", "í™•ì¸í•˜ì‹  ë¹„ë°€ë²ˆí˜¸ëŠ” [" + dto.getUserPwd() + "] ì…ë‹ˆë‹¤");
-					req.setAttribute("message3", "ì•„ì´ë”” ì°¾ê¸°");
-					req.setAttribute("message4", "findId.do';");
-					req.setAttribute("message5", "ë¡œê·¸ì¸");
-					req.setAttribute("message6", "login.do';");
+				// class¿¡¼­ jsp·Î ³Ñ±æ¶§ setAttribute·Î ³Ñ±ä´Ù.
+				req.setAttribute("message1", "¾ÆÀÌµğ");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "¾ÆÀÌµğ Ã£±â");
+				req.setAttribute("message4", "findId.do';");
+				req.setAttribute("message5", "·Î±×ÀÎ");
+				req.setAttribute("message6", "login.do';");
 
+				url = "/movie/findPwdConf.do";
+				forward(req,resp,url);
 
-					url = "/movie/findPwdConf.do";
-					forward(req,resp,url);
-				}
+				return;		// id/tel °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
+			}
 
+			req.setAttribute("message1", "¾ÆÀÌµğ");
+			req.setAttribute("message2", "È®ÀÎÇÏ½Å ºñ¹Ğ¹øÈ£´Â [" + dto.getUserPwd() + "] ÀÔ´Ï´Ù");
+			req.setAttribute("message3", "¾ÆÀÌµğ Ã£±â");
+			req.setAttribute("message4", "findId.do';");
+			req.setAttribute("message5", "·Î±×ÀÎ");
+			req.setAttribute("message6", "login.do';");
 
-				else if(uri.indexOf("findPwdConf.do")!=-1) {
 
-					url = "/jspProject/movie_confirm.jsp";
-					forward(req,resp,url);
-				}
+			url = "/movie/findPwdConf.do";
+			forward(req,resp,url);
+		}
 
 
-				// ê°€ì…ì—¬ë¶€ í™•ì¸
-				else if(uri.indexOf("signConfirm.do")!=-1){
+		else if(uri.indexOf("findPwdConf.do")!=-1) {
 
-					url = "/jspProject/signUpMember/checkUpMember.jsp";
-					forward(req,resp,url);
-				}
+			url = "/jspProject/movie_confirm.jsp";
+			forward(req,resp,url);
+		}
 
 
-				else if(uri.indexOf("signConfirm_ok.do")!=-1) {
+		// °¡ÀÔ¿©ºÎ È®ÀÎ
+		else if(uri.indexOf("signConfirm.do")!=-1){
 
-					String userName = req.getParameter("userName");
-					String userBirth = req.getParameter("userBirth");
-					String userTel = req.getParameter("userTel");
+			url = "/jspProject/signUpMember/checkUpMember.jsp";
+			forward(req,resp,url);
+		}
 
-					MovieTicketDTO dto = dao.getReadDataByName(userName);
 
-					if(dto==null||!dto.getUserName().equals(userName)) {
+		else if(uri.indexOf("signConfirm_ok.do")!=-1) {
 
-						req.setAttribute("message1", "ê°€ì…ì •ë³´");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ë©”ì¸í™”ë©´");
-						req.setAttribute("message4", "main.do';");
-						req.setAttribute("message5", "íšŒì›ê°€ì…ì§„í–‰");
-						req.setAttribute("message6", "signUpGo.do';");
+			String userName = req.getParameter("userName");
+			String userBirth = req.getParameter("userBirth");
+			String userTel = req.getParameter("userTel");
 
-						url = "/movie/signUpConfirm.do";
-						forward(req,resp,url);
-						return;		// id/Name ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
-					}
+			MovieTicketDTO dto = dao.getReadDataByName(userName);
 
+			if(dto==null||!dto.getUserName().equals(userName)) {
 
-					if(dto==null||!dto.getUserBirth().equals(userBirth)) {
+				req.setAttribute("message1", "°¡ÀÔÁ¤º¸");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "¸ŞÀÎÈ­¸é");
+				req.setAttribute("message4", "main.do';");
+				req.setAttribute("message5", "È¸¿ø°¡ÀÔÁøÇà");
+				req.setAttribute("message6", "signUpGo.do';");
 
-						req.setAttribute("message1", "ê°€ì…ì •ë³´");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ë©”ì¸í™”ë©´");
-						req.setAttribute("message4", "main.do';");
-						req.setAttribute("message5", "íšŒì›ê°€ì…ì§„í–‰");
-						req.setAttribute("message6", "signUpGo.do';");
+				url = "/movie/signUpConfirm.do";
+				forward(req,resp,url);
+				return;		// id/Name °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
+			}
 
-						url = "/movie/signUpConfirm.do";
-						forward(req,resp,url);
 
-						return;		// id/Birth ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
-					}
+			if(dto==null||!dto.getUserBirth().equals(userBirth)) {
 
-					if(dto==null||!dto.getUserTel().equals(userTel)) {
+				req.setAttribute("message1", "°¡ÀÔÁ¤º¸");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "¸ŞÀÎÈ­¸é");
+				req.setAttribute("message4", "main.do';");
+				req.setAttribute("message5", "È¸¿ø°¡ÀÔÁøÇà");
+				req.setAttribute("message6", "signUpGo.do';");
 
-						// classì—ì„œ jspë¡œ ë„˜ê¸¸ë•Œ setAttributeë¡œ ë„˜ê¸´ë‹¤.
-						req.setAttribute("message1", "ê°€ì…ì •ë³´");
-						req.setAttribute("message2", "íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
-						req.setAttribute("message3", "ë©”ì¸í™”ë©´");
-						req.setAttribute("message4", "main.do';");
-						req.setAttribute("message5", "íšŒì›ê°€ì…ì§„í–‰");
-						req.setAttribute("message6", "signUpGo.do';");
+				url = "/movie/signUpConfirm.do";
+				forward(req,resp,url);
 
-						url = "/movie/signUpConfirm.do";
-						forward(req,resp,url);
+				return;		// id/Birth °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
+			}
 
-						return;		// id/tel ê°€ í‹€ë¦¬ë©´ ì—¬ê¸°ì„œ ë©ˆì¶°ë¼
-					}
+			if(dto==null||!dto.getUserTel().equals(userTel)) {
 
-					req.setAttribute("message1", "ê°€ì…ì •ë³´");
-					req.setAttribute("message2", "í™•ì¸í•˜ì‹  ì•„ì´ë””ëŠ” [" + dto.getUserId() + "] ì…ë‹ˆë‹¤");
-					req.setAttribute("message3", "ë©”ì¸í™”ë©´");
-					req.setAttribute("message4", "main.do';");
-					req.setAttribute("message5", "íšŒì›ê°€ì…ì§„í–‰");
-					req.setAttribute("message6", "signUpGo.do';");
+				// class¿¡¼­ jsp·Î ³Ñ±æ¶§ setAttribute·Î ³Ñ±ä´Ù.
+				req.setAttribute("message1", "°¡ÀÔÁ¤º¸");
+				req.setAttribute("message2", "È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				req.setAttribute("message3", "¸ŞÀÎÈ­¸é");
+				req.setAttribute("message4", "main.do';");
+				req.setAttribute("message5", "È¸¿ø°¡ÀÔÁøÇà");
+				req.setAttribute("message6", "signUpGo.do';");
 
-					url = "/movie/signUpGo.do";
-					forward(req,resp,url);
-				}
+				url = "/movie/signUpConfirm.do";
+				forward(req,resp,url);
 
-				else if(uri.indexOf("signUpConfirm.do")!=-1){
+				return;		// id/tel °¡ Æ²¸®¸é ¿©±â¼­ ¸ØÃç¶ó
+			}
 
-					url = "/jspProject/movie_confirm.jsp";
-					forward(req,resp,url);
-				}
+			req.setAttribute("message1", "°¡ÀÔÁ¤º¸");
+			req.setAttribute("message2", "È®ÀÎÇÏ½Å ¾ÆÀÌµğ´Â [" + dto.getUserId() + "] ÀÔ´Ï´Ù");
+			req.setAttribute("message3", "¸ŞÀÎÈ­¸é");
+			req.setAttribute("message4", "main.do';");
+			req.setAttribute("message5", "È¸¿ø°¡ÀÔÁøÇà");
+			req.setAttribute("message6", "signUpGo.do';");
 
-				else if(uri.indexOf("signUpGo.do")!=-1){
+			url = "/movie/signUpConfirm.do";
+			forward(req,resp,url);
+		}
 
-					url = "/jspProject/signUpMember/signUpMember.jsp";
-					forward(req,resp,url);
-				}
+		else if(uri.indexOf("signUpConfirm.do")!=-1){
+
+			url = "/jspProject/movie_confirm.jsp";
+			forward(req,resp,url);
+		}
 		
-		else if(uri.indexOf("main.do")!=-1) {	
+		else if(uri.indexOf("signUpGo.do")!=-1){
+
+			url = "/jspProject/signUpMember/signUpMember.jsp";
+			forward(req,resp,url);
+		}
+		
+
+		
+		else if(uri.indexOf("main.do")!=-1) {
+
+			url = "/jspProject/cgvMain.jsp";
+			forward(req,resp,url);
+
+		}
+
+
+		// logoutÀÛ¾÷
+		else if(uri.indexOf("logout.do")!=-1) {
+
+			HttpSession session = req.getSession();
+
+			session.removeAttribute("customInfo");		// customInfo¿¡ ÀÖ´Â °ª »èÁ¦ 
+			session.invalidate();						// customInfo¶ó´Â º¯¼öµµ »èÁ¦
+
 			url = "/jspProject/cgvMain.jsp";
 			forward(req,resp,url);
 		}
-		// logoutï¿½ì˜‰ï¿½ë¾½
-		else if(uri.indexOf("logout.do")!=-1) {
-			HttpSession session = req.getSession();
-			session.removeAttribute("customInfo");		// customInfoï¿½ë¿‰ ï¿½ì—³ï¿½ë’— åª›ï¿½ ï¿½ê¶˜ï¿½ì £ 
-			session.invalidate();						// customInfoï¿½ì”ªï¿½ë’— è¹‚ï¿½ï¿½ë‹”ï¿½ë£„ ï¿½ê¶˜ï¿½ì £
-			url = cp+"/movie/main.do";
-			resp.sendRedirect(url);
-		}else if(uri.indexOf("event.do") != -1) {	
-			url = cp+"/store/list.do";
-			resp.sendRedirect(url);
-		}else if(uri.indexOf("sit.do")!=-1) {
-			HttpSession session=req.getSession();		
+
+
+
+
+
+
+
+		//¿µÈ­ ÁÂ¼® È®ÀÎ
+		else if(uri.indexOf("sit.do")!=-1) {
+			HttpSession session=req.getSession();
+
 			String movietype=req.getParameter("movietype");
 			String timetype=req.getParameter("timetype");
 			String roomtypestring=req.getParameter("roomtype");
 			int roomtype=Integer.valueOf(roomtypestring);
-			System.out.println(movietype+"å ì™ì˜™í™”"+timetype+"å ì‹œê³¤ì˜™"+roomtype+"å ì¢ì˜ê³¤ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™");
-			MovieSitDAO msdao=new MovieSitDAO(DBCPConn.getConnection());
-			List<MovieSitDTO> lists=msdao.getLists(movietype, timetype, roomtype);
+			System.out.println(movietype+"¿µÈ­"+timetype+"½Ã°£"+roomtype+"»ó¿µ°ü ¿¹¸Å ½ÃÀÛ");
+
+			Movie_PaymentDAO msdao=new Movie_PaymentDAO(DBCPConn.getConnection());
+			List<Movie_PaymentDTO> lists = msdao.getLists(movietype, timetype, roomtype);
 			req.setAttribute("lists", lists);
+
+
 			url="/jspProject/movie/sit.jsp";
 			forward(req, resp, url);
 		}
-		
-		//å ì™ì˜™í™” å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+
+		//¿µÈ­ Æò°¡ ¼±ÅÃ
 		else if(uri.indexOf("movie_evaluation_select.do")!=-1) {
 			url="/jspProject/movie/movie_evaluation_select.jsp";
 			forward(req, resp, url);
 		}
-		
-		//å ì™ì˜™í™” å ì™ì˜™ í™•å ì™ì˜™
+
+		//¿µÈ­ Æò°¡ È®ÀÎ
 		else if(uri.indexOf("movie_evaluation.do")!=-1) {
 			HttpSession session=req.getSession();
 			req.setCharacterEncoding("UTF-8");
@@ -408,126 +431,199 @@ public class MovieTicketServlet extends HttpServlet {
 				userid=((CustomInfo)session.getAttribute("customInfo")).getUserId();
 			}else {
 			}
-			System.out.println(movietype+"å ì™ì˜™í™” íƒ€å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½ å ì™ì˜™ å ì™ì˜™");
+			System.out.println(movietype+"¿µÈ­ Å¸ÀÔÀ¸·Î µé¾î ¿Â °ª");
 			//-----------------------------------------------------------------------
 			Movie_AppraisalDAO madao=new Movie_AppraisalDAO(DBCPConn.getConnection());
 
 			String pageNum=req.getParameter("pageNum");
-			int currentPage=1;//ì²˜
+			int currentPage=1;//Ã³À½½ÃÇàÇÏ´Â ÆäÀÌÁö
 			if(pageNum!=null){
 				currentPage=Integer.parseInt(pageNum);
 			}
-			int dataCount=madao.countData(movietype);//
+			int dataCount=madao.countData(movietype);//ÀüÃ¼ µ¥ÀÌÅÍ ±¸ÇÏ±â
 			req.setAttribute("dataCount",new Integer(dataCount));
-			int numPerPage=10;//
+			int numPerPage=10;//ÃÑ ÆäÀÌÁö¼ö ±¸ÇÏ±â
 			int totalPage=myutil.getPageCount(numPerPage, dataCount);
-
+			//ÀüÃ¼ÆäÀÌÁö¼öº¸´Ù Ç¥½ÃÇÒ ÆäÀÌÁö°¡ ´õ Å« °æ¿ì
 			if(currentPage>totalPage)
 				currentPage=totalPage;
-
+			//db¿¡¼­ °¡Á®¿Ã µ¥ÀÌÅÍÀÇ ½ÃÀÛ°ú ³¡
 			int start=(currentPage-1)*numPerPage+1;
 			int end=currentPage*numPerPage;
 
 			List<Movie_AppraisalDTO> lists=madao.getList(start, end, movietype);
 			req.setAttribute("lists", lists);
-			
-			//System.out.println(lists.size());í¬
-	
+
+			//System.out.println(lists.size());Å©±âÀç±â
+			//ÆäÀÌÁö Ã³¸®
 			String listUrl="/study/movie/movie_evaluation.do?movietype="+URLEncoder.encode(movietype,"UTF-8");
 			String pageIndexList=myutil.pageIndexList(currentPage, totalPage, listUrl);
 			req.setAttribute("pageIndexList", pageIndexList);
-			
+
 			url="/jspProject/movie/movie_evaluation.jsp";
 			forward(req, resp, url);
 		}
-		
-	
+
+		//¿µÈ­ Æò°ú ÀÛ¼º
 		else if(uri.indexOf("movie_evaluation_ok.do")!=-1) {
+
 			HttpSession session=req.getSession();
 			req.setCharacterEncoding("UTF-8");
+
 			int star_select=Integer.valueOf(req.getParameter("star_select"));
 			String content=req.getParameter("content");
 			String movietype=(String)session.getAttribute("movietype");
-			System.out.println(movietype+"å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹«ë„˜ì–µì˜™å ì™ì˜™ì§¸å ï¿½ å ì™ì˜™å ì™ì˜™");
-			//movietype="å ì™ì˜™å ìŒœë…€ì„å ì™ì˜™";
+			System.out.println(movietype+"ÀÌ °ªÀÌ ¾È³Ñ¾î¿À´Â°Í °°¾Æ");
+
+			//movietype="³ª»Û³à¼®µé";
 			Movie_AppraisalDTO dto=new Movie_AppraisalDTO();
 			dto.setMovietype(movietype);
 			dto.setMsg(content);
 			dto.setStar_select(star_select);
 			dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
+
 			Movie_AppraisalDAO madao=new Movie_AppraisalDAO(DBCPConn.getConnection());
 			madao.insertData(dto);
+
 			url=cp+"/movie/movie_evaluation.do?movietype="+URLEncoder.encode(movietype,"UTF-8");
 			System.out.println(url);
+
 			resp.sendRedirect(url);
 		}
-		
+
+
+		//¿µÈ­ ¿¹¸Å ¼±ÅÃ
 		else if(uri.indexOf("movie_select.do")!=-1) {
+
 			HttpSession session=req.getSession();
 
 			if(session.getAttribute("customInfo")==null||((CustomInfo)session.getAttribute("customInfo")).getUserId().equals("")) {
+
+				System.out.println("ºñ·Î±×ÀÎ½Ã..");
+
 				url=cp+"/jspProject/cgvMain.jsp";
 				resp.sendRedirect(url);
 				return;
 			}
 			System.out.println(((CustomInfo)session.getAttribute("customInfo")).getUserId());
+
 			List<Movie_selectDTO> lists=new ArrayList<Movie_selectDTO>();
 			Movie_selectDAO msdao=new Movie_selectDAO(DBCPConn.getConnection());
+
 			lists=msdao.getDataList();
+
 			req.setAttribute("lists", lists);
+
 			List<Movie_countDTO> listscount=new ArrayList<Movie_countDTO>();
 			listscount=msdao.getDataCount();
+
 			req.setAttribute("listscount", listscount);
+
 			url="/jspProject/movie/movie_select.jsp";
 			forward(req, resp, url);
 		}
-		
+
+		//¿µÈ­ °áÁ¦ ÆäÀÌÁö·Î.
 		else if(uri.indexOf("sit_ok.do")!=-1) {
-//			boolean autocommit=true;
-//			if(conn.getAutoCommit()){
-//				conn.setAutoCommit(false);
-//			}
+
+			//					boolean autocommit=true;
+			//					try {
+			//						if(conn.getAutoCommit()){
+			//							conn.setAutoCommit(false);
+			//						}
+			//					} catch (SQLException e) {
+			//						// TODO Auto-generated catch block
+			//						e.printStackTrace();
+			//					}
+
+
 			HttpSession session=req.getSession();
-			List<MovieSitDTO> lists=new ArrayList<>();
+
+			List<Movie_PaymentDTO> lists=new ArrayList<>();
+
 			for(int i=0;i<10;i++){
 				for(int j=1;j<=10;j++){
+
 					if(Integer.valueOf(req.getParameter("h"+Integer.valueOf((i*10)+j)))==2){
-					MovieSitDTO dto=new MovieSitDTO();
-					dto.setMovietype(req.getParameter("movietype"));
-					dto.setTimetype(req.getParameter("timetype"));
-					dto.setRoomtype(Integer.valueOf(req.getParameter("roomtype")));
-					System.out.println(((CustomInfo)session.getAttribute("customInfo")).getUserId());
-					dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
-					//dto.setUserId("å ìŒˆì™ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™å ì‹±ë“¸ì˜™");
-					dto.setSitnum(((i*10)+j));
-					lists.add(dto);
-//					MovieSitDAO dao=new MovieSitDAO(conn);
-//					if(dao.insert(dto)!=1){//
-//							autocommit=false;
-//						}
+
+						Movie_PaymentDTO dto=new Movie_PaymentDTO();
+
+						dto.setMovietype(req.getParameter("movietype"));
+						dto.setTimetype(req.getParameter("timetype"));
+						dto.setRoomtype(Integer.valueOf(req.getParameter("roomtype")));
+
+						System.out.println(((CustomInfo)session.getAttribute("customInfo")).getUserId());
+
+						dto.setUserId(((CustomInfo)session.getAttribute("customInfo")).getUserId());
+						//dto.setUserId("ÀÓ½Ã »ç¿ëÀÚ ¾ÆÀÌµğ");
+						dto.setSitnum(((i*10)+j));
+
+						lists.add(dto);
+
+						Movie_PaymentDAO mpdao=new Movie_PaymentDAO(conn);
+						//							if(mpdao.insert(dto)!=1){//Å°°ª ¿À·ù½Ã
+						//									autocommit=false;
+						//								}
+						//							
 					}
 				}
 			}
 			session.setAttribute("lists", lists);
-			for(MovieSitDTO dto:lists) {
-			System.out.println(dto.getTimetype());
-			System.out.println(dto.getSitnum());
+			for(Movie_PaymentDTO dto:lists) {
+				System.out.println(dto.getTimetype());
+				System.out.println(dto.getSitnum());
 			}
 			System.out.println(lists.size());
-//			if(autocommit){
-//				conn.commit();
-//				conn.setAutoCommit(true);
-//			}else{
-//				conn.rollback();
-//				conn.setAutoCommit(true);
-//			}
-			/*url = cp+"/movie/buy.do";
-			resp.sendRedirect(url);
-			*/
-			url = "/buy/buy.jsp";
-			forward(req, resp, url);
+			//					try {
+			//					if(autocommit){
+			//						conn.commit();
+			//						conn.setAutoCommit(true);
+			//					}else{
+			//						conn.rollback();
+			//						conn.setAutoCommit(true);
+			//					}
+			//					}catch (Exception e) {
+			//						// TODO: handle exception
+			//					}
 		}
 		
-	}
-}
+		
+		else if(uri.indexOf("updated.do")!=-1) {
+			
+			HttpSession session = req.getSession();
+			CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
+			
+			MovieTicketDTO dto = dao.getReadData(customInfo.getUserId());
+			session.setAttribute("dto", dto);
+			
+			url = "/jspProject/signUpMember/updateMember.jsp";
+			forward(req, resp, url);
+		
+		}
+		
+		
+		else if(uri.indexOf("updated_ok.do")!=-1) {
+			
+			String userId = req.getParameter("userId");
+			
+			MovieTicketDTO dto = new MovieTicketDTO();
+			
+			dto.setUserId(userId);
+			dto.setUserPwd(req.getParameter("userPwd"));
+			dto.setUserName(req.getParameter("userName"));
+			dto.setUserBirth(req.getParameter("userBirth"));
+			dto.setUserTel(req.getParameter("userTel"));
+			dto.setUserEmail(req.getParameter("userEmail"));
+			
+			dao.update(dto);
+			
+			url = "/movie/main.do";
+			forward(req, resp, url);
+					
+			
+		}
+		
 
+	}
+
+}
