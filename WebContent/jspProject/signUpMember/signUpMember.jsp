@@ -1,16 +1,31 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	request.setCharacterEncoding("UTF-8");
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% 
+	request.setCharacterEncoding("UTF-8");	
 	String cp = request.getContextPath();
+	int count = 0;
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>회원가입,cgv</title>
 
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
+<link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap core JavaScript -->
+<script src="<%=cp%>/jspProject/vendor/jquery/jquery.min.js"></script>
+<script	src="<%=cp%>/jspProject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="<%=cp%>/jspProject/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script type="text/javascript" async="" src="https://www.google-analytics.com/plugins/ua/ec.js"></script>
 
 <script type="text/javascript">
 
@@ -87,20 +102,135 @@
 		f.userEmail.value = str;
 		
 		f.action = "<%=cp%>/movie/signUp_ok.do";
+		alert("회원가입 완료");
 		f.submit();
 		
 	}
 
 </script>
+<style type="text/css">
 
+/* 기본 css */
+a:link { text-decoration: none;}
+a:hover { text-decoration: none;}
+
+.book {
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.nav {
+
+	text-align: center;
+}
+
+#content {
+	
+	width: 1000px;
+	height: 1500px;
+	margin-left: 400px;
+	margin-right: 500px;
+}
+
+#header { 
+	
+	
+ 	width: 1000px;
+	height: 130px; 
+	padding-left: 300px;
+	padding-right: 300px; 
+
+}
+
+.head {
+
+	width: 1920px;
+	height: 130px; 
+	padding-left: 400px;
+	padding-right: 500px;
+	margin-left: 0px;
+	margin-right: 0px; 
+}
+
+.login{
+	
+	font-size: 9pt;
+
+}
+
+.floating{
+position: fixed;
+right: 50%;
+top: 200px;
+margin-right: -660px;
+text-align: center;
+width: 180px;
+
+}
+</style>
+<!-- Bootstrap core CSS -->
+<link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="css/scrolling-nav.css" rel="stylesheet">
 </head>
-<body bgcolor="#FEF8DC">
-<br/><br/>
-
-<div id="bbs">
-	<div id="bbs_title">
-		회원가입
+<body id="page-top" >
+<c:choose>
+		<c:when test="${empty sessionScope.customInfo.userId }">
+			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:when> 
+		<c:otherwise>
+		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				${sessionScope.customInfo.userId }님 반갑습니다.
+				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	<img src="<%=cp%>/jspProject/image/Gline.png">
+<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+	<div>
+			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
+				<h1 align="left" >
+				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
+				</h1>
+			</div>
+			<div style="display: inline-block; margin-top:10px; float: left; width: 80%; padding-left:30px; padding-top: 20px;" > 
+				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
+					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
+				</h3>
+				<div id="nav" align="center" style="margin-right: 250px;">
+				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+				<br><br>
+				</div>
+			</div>	
 	</div>
+</div>
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<br><br>
+	
+	<div style="height: 50px;"></div>
+	<div class="container">
+		<section id="about">
+			<div class="row" style="height: 100px; margin-left: 250px;"">
+				<div class="col-lg-8 mx-auto">
+				<p style="font-size: 30px; margin-left: -100px;" align="left"><b>CGV+CJ ONE 통합회원 가입</b></p>
+				</div>
+			</div>
+		</section>
+
+ <div id="bbs" style="margin-left: 300px;">
 	
 	<form action="" method="post" name="myForm">
 		
@@ -110,7 +240,7 @@
 				<dl>
 					<dt> 이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</dt>
 					<dd>
-						<input type="text" name="userName" size="35" maxlength="50" class="boxTF"/>
+						<input type="text" name="userName" size="35" maxlength="50" class="boxTF" style="height: 40px;border-color: #EAEAEA;border-style: solid;"/>
 					</dd>
 				</dl>
 			</div>
@@ -119,7 +249,7 @@
 				<dl>
 					<dt> 아&nbsp;이&nbsp;디</dt>
 					<dd>
-						<input type="text" name="userId" size="35" maxlength="20" class="boxTF"/>
+						<input type="text" name="userId" size="35" maxlength="20" class="boxTF" style="height: 40px; border-color: #EAEAEA;border-style: solid;"/>
 					</dd>
 				</dl>
 			</div>
@@ -128,7 +258,7 @@
 				<dl>
 					<dt> 패스워드</dt>
 					<dd>
-						<input type="password" name="userPwd" size="35" maxlength="20" class="boxTF"/>
+						<input type="password" name="userPwd" size="35" maxlength="20" class="boxTF" style="height: 40px;border-color: #EAEAEA;border-style: solid;"/>
 					</dd>
 				</dl>
 			</div>
@@ -137,7 +267,8 @@
 				<dl>
 					<dt> 생년월일</dt>
 					<dd>
-						<input type="text" name="userBirth" size="35" maxlength="50" class="boxTF"/> [yyyy-mm-dd]
+						<input type="text" name="userBirth" size="35" maxlength="50" class="boxTF" style="height: 40px;border-color: #EAEAEA;border-style: solid;"
+						placeholder="&nbsp;&nbsp;&nbsp;YYYY-MM-DD" aria-label="&nbsp;&nbsp;&nbsp;YYYY-MM-DD"/>
 					</dd>
 				</dl>
 			</div>
@@ -147,7 +278,7 @@
 				<dl>
 					<dt> 휴대전화</dt>
 					<dd>
-						<input type="text" name="userTel" size="35" maxlength="50" class="boxTF"/>
+						<input type="text" name="userTel" size="35" maxlength="50" class="boxTF" style="height: 40px;border-color: #EAEAEA;border-style: solid;"/>
 					</dd>
 				</dl>
 			</div>
@@ -156,23 +287,51 @@
 				<dl>
 					<dt> 이메일</dt>
 					<dd>
-						<input type="text" name="userEmail" size="35" maxlength="50" class="boxTF"/>
+						<input type="text" name="userEmail" size="35" maxlength="50" class="boxTF" style="height: 40px;border-color: #EAEAEA;border-style: solid;"/>
 					</dd>
 				</dl>
 			</div>
 
 		</div>
 		
-		<div id="bbsCreated_footer">
-			<input type="button" value="가입하기" class="btn2" onclick="sendIt();"/>
-			<input type="reset" value="다시입력" class="btn2" onclick="document.myForm.userName.focus();"/>
-			<input type="button" value="가입취소" class="btn2" onclick="javascript:location.href='<%=cp%>/movie/login.do';"/>
+	<div id="bbsCreated_footer" style="margin-left: 25px;">
+
+			        
+			<input type="button" value="가입하기" class="btn btn-primary"" onclick="sendIt();"/>
+			<input type="reset" value="다시입력" class="btn btn-primary"" onclick="document.myForm.userName.focus();"/>
+			<input type="button" value="가입취소" class="btn btn-primary"" onclick="javascript:location.href='<%=cp%>/movie/login.do';"/>
+	
 		</div>
 	
 	</form>
+	</div>
+	</div>
+<table align="center" style=" margin-left: 50px; width: 850px; height: 150px;">
 
+</table>
+	
 </div>
+<div class="floating">
+	<img style="border: 3px solid red; border-radius: 7px;" src="<%=cp%>/jspProject/image/floating.png">
+</div>
+<div id="footer">
+	<img src="<%=cp%>/jspProject/image/underimage.png">
+</div>
+	<!-- Footer -->
+	<footer style= background-image:url('<%=cp%>/jspProject/image/bottomimage.png');">
+	
+	</footer>
+	
 
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom JavaScript for this theme -->
+	<script src="js/scrolling-nav.js"></script>
 
 </body>
-</html>
+
