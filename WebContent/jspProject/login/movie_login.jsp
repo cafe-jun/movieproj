@@ -175,7 +175,7 @@ a:hover { text-decoration: none;}
 				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
-				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
+				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	
@@ -189,8 +189,9 @@ a:hover { text-decoration: none;}
 <br/><br/><br/><br/><br/><br/>
 
 <form action="" method="post" name="myForm">
- 
-<table width="820px" border="0" cellpadding="0" cellspacing="0" align="center">
+
+<div align="center">
+	<table width="820px" border="0" cellpadding="0" cellspacing="0" align="center">
 	<tr>
 		<td colspan="4" align="left"><img src="<%=cp %>/jspProject/image/logintab.jpg">	</td>
 	</tr>
@@ -235,6 +236,7 @@ a:hover { text-decoration: none;}
 		</td>
 	</tr>
 </table>
+</div>
 <br/><br/><br/><br/>	
 
 <div id="footer">

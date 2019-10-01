@@ -118,6 +118,7 @@ a:hover { text-decoration: none;}
 
 <br/><br/><br/><br/>
 
+<div align="center">
 <table align="center" >
 	<tr>
 		<td align="center">
@@ -149,14 +150,12 @@ a:hover { text-decoration: none;}
 		</td>
 	</tr>
 </table>
+</div>
 
 <br/><br/><br/><br/>	
 
 <div id="footer">
 	<img src="<%=cp%>/jspProject/image/underimage.png">
 </div>
-
-
-
 </body>
 </html>

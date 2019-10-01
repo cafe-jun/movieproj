@@ -112,8 +112,8 @@ width: 180px;
 
 	
 <img src="<%=cp%>/jspProject/image/Gline.png">
-<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
-	<div>
+	<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+		<div>
 			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
 				<h1 align="left" >
 				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
@@ -124,22 +124,17 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-<<<<<<< HEAD
-				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/movie/movie_evaluation.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
-=======
+
+
 				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
-				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
->>>>>>> refs/remotes/origin/master
+				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+
 				<br><br>
 				</div>
 			</div>	
+		</div>
 	</div>
-</div>
 <img src="<%=cp%>/jspProject/image/Gline.png">
 <br><br>
 
