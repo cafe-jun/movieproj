@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
@@ -107,7 +106,7 @@ width: 180px;
 </script>
 </head>
 
-<body id="page-top" style="background-color: #FDFCF0;">
+<body id="page-top" style="background-color: ;">
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
@@ -129,10 +128,12 @@ width: 180px;
 			</div>
 		</c:otherwise>
 	</c:choose>
+
+
   <!-- Navigation -->
-	<img src="<%=cp%>/jspProject/image/Gline.png">
-	<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
-		<div>
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+	<div>
 			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
 				<h1 align="left" >
 				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
@@ -150,15 +151,20 @@ width: 180px;
 				<br><br>
 				</div>
 			</div>	
-		</div>
 	</div>
-	<img src="<%=cp%>/jspProject/image/Gline.png">
-	<br><br><br/><br/>
+</div>
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<br><br>
+<div align="center" style="height: 400px;">
+<img src="<%=cp%>/mvproject/image/store_1.png">
+</div>
+  <br/><br/>
 	<div class="container" align="left">
 	 	 <section id="about">
 		      <div class="row">
 		        <div class="col-lg-8 mx-auto" >
-		          <h3 style="margin-left: -50px;"><b>팝콘/음료/굿즈</b></h3> 
+		        
+		          <h3 style="margin-left: 0px;"><b>팝콘/음료/굿즈</b></h3> 
 		      	</div>
 	      	</div>
 	  </section>
@@ -169,7 +175,7 @@ width: 180px;
 			  <c:forEach var="dto" items="${lists}">
 			      <div class="col-lg-3 col-md-6 mb-4">
 			        <div class="card h-100">
-			          <a href="<%=cp%>/store/storeInfo.do?num=${dto.num}"><img class="card-img-top" src="${imagePath}/${dto.saveFileName}"  alt="" width="250" height="150"></a>
+			          <a href="<%=cp%>/store/storeInfo.do?num=${dto.num}"><img class="card-img-top" src="${imagePath}/${dto.saveFileName}" alt="" width="250" height="150"></a>
 			          <div class="card-body">
 			            <h5 class="card-title"><b>${dto.subject}</b></h5>
 			            <p class="card-text" align="right">${dto.price}원</p>
@@ -178,20 +184,20 @@ width: 180px;
 			      </div>
 			 </c:forEach> 
 		 </div>
-  	</div>
-	
-	<!-- Bootstrap core JavaScript -->
-	<script src="<%=cp%>/mvproject/jquery/jquery.min.js"></script>
-	<script src="<%=cp%>/mvproject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- Plugin JavaScript -->
-	<script src="<%=cp%>/mvproject/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<!-- Custom JavaScript for this theme -->
-	<script src="<%=cp%>/mvproject/js/scrolling-nav.js"></script>
-	<br><br><br><br>
-	<!-- 이벤트 이미지 처리 -->
+	  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="<%=cp%>/mvproject/jquery/jquery.min.js"></script>
+  <script src="<%=cp%>/mvproject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="<%=cp%>/mvproject/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="<%=cp%>/mvproject/js/scrolling-nav.js"></script>
+  <br><br><br><br>
+<!-- 이벤트 이미지 처리 -->
 
-	<div id="footer">
+<div id="footer">
 	<img src="<%=cp%>/jspProject/image/underimage.png">
 </div>
 </body>
+
 </html>
