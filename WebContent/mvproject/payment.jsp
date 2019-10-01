@@ -106,7 +106,7 @@ width: 180px;
 </script>
 </head>
 
-<body id="page-top" style="background-color: #FDFCF0;">
+<body id="page-top" style="background-color: ;">
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
@@ -144,9 +144,8 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
 				</div>
@@ -169,7 +168,7 @@ width: 180px;
 	  <br/>
 	  <div class="container">
 <div class="container" style="padding-left: 150px">
-			<table style="width: 800px;" style="background-color: #FEF8DC">
+			<table style="width: 800px;" style="background-color: ">
 				<tr><td style="font-size: 20px;">구매상품정보</td></tr>
 				<tr><td style="height: 20px;"></td></tr>
 				<tr height="3"><td colspan="8" bgcolor="black"></td></tr>
@@ -184,12 +183,12 @@ width: 180px;
 					<c:forEach var="dto" items="${orderlists}">
 						<tr height="2"><td colspan="8" bgcolor="#cccccc"></td></tr>
 							<tr height="30">
-								<td align="center" bgcolor="#FEF8DC" width="50"><a href="<%=cp%>/store/storeInfo.do?num=${dto.num}"> 
+								<td align="center" width="50"><a href="<%=cp%>/store/storeInfo.do?num=${dto.num}"> 
 								<img class="card-img-top" src="${imagePath}/${dto.saveFileName}" width="250" height="150">${dto.subject}</a></td>
-								<td align="center" bgcolor="#FEF8DC" width="80">${dto.price}원</td>
-								<td align="center" bgcolor="#FEF8DC" width="60">${dto.amount}개</td>
-								<td align="center" bgcolor="#FEF8DC" width="60">${dto.storeSum}원</td>
-								<td align="center" bgcolor="#FEF8DC" width="60"><a type="button"  href="javascript:location.href='<%=cp%>/store/storeDeleteDate.do?order_number=${dto.order_number}'" >상품삭제</a> </td>
+								<td align="center" width="80">${dto.price}원</td>
+								<td align="center" width="60">${dto.amount}개</td>
+								<td align="center" width="60">${dto.storeSum}원</td>
+								<td align="center" width="60"><a type="button"  href="javascript:location.href='<%=cp%>/store/storeDeleteDate.do?order_number=${dto.order_number}'" >상품삭제</a> </td>
 							</tr>
 					</c:forEach>
 				</c:if>
@@ -198,7 +197,7 @@ width: 180px;
 				</c:if>
 				<tr height="1"><td colspan="8" bgcolor="black"></td></tr>
 			</table >	
-			<table style="height: 50pt; margin-left: 50px;" ></table>
+			<table style="height: 50pt; "></table>
 				<table style="width: 800px;">
 					<tr><td style="height: 20px;"></td></tr>
 		
@@ -292,13 +291,13 @@ width: 180px;
 						</form>	
 						<table style="height: 50pt;"></table>
 						<form name="fob">
-						<table style="width: 800px; margin-left: 50px; height: 80px;">
+						<table style="width: 800px;  height: 80px;">
 							<tr style="margin-left: 20px;">
 								<td><input type="checkbox" onclick="CheckAll(document.fob.aaa)" />
 								<font size="4pt;">&nbsp;주문정보/결제 대행 서비스 약관 모두 동의</font></td>
 								</tr>
 						</table>
-						<table style="width: 800px; margin-left: 50px; background-color: #FEF8DC;" border="0">
+						<table style="width: 800px;  background-color: #EAEAEA;" border="0">
 							<tr height="20">
 								<td></td>
 							</tr>

@@ -106,7 +106,7 @@ width: 180px;
 </script>
 </head>
 
-<body id="page-top" style="background-color: ;">
+<body id="page-top" >
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
@@ -144,21 +144,22 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
-				<br><br>
+			<br><br>
 				</div>
 			</div>	
 	</div>
 </div>
 <img src="<%=cp%>/jspProject/image/Gline.png">
 <br><br>
+
 <div align="center" style="height: 400px;">
-<img src="<%=cp%>/mvproject/image/store_1.png">
+	<img src="<%=cp%>/mvproject/image/store_1.png">
 </div>
-  <br/><br/>
+
+  <br/><br/><br/>
 	<div class="container" align="left">
 	 	 <section id="about">
 		      <div class="row">
@@ -185,6 +186,8 @@ width: 180px;
 			 </c:forEach> 
 		 </div>
 	  </div>
+		
+ 
   <!-- Bootstrap core JavaScript -->
   <script src="<%=cp%>/mvproject/jquery/jquery.min.js"></script>
   <script src="<%=cp%>/mvproject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -106,7 +106,7 @@ width: 180px;
 </script>
 </head>
 
-<body id="page-top" style="background-color: #FDFCF0;">
+<body id="page-top" style="background-color: ;">
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
@@ -132,7 +132,7 @@ width: 180px;
 
   <!-- Navigation -->
 <img src="<%=cp%>/jspProject/image/Gline.png">
-<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+<div class="head" style="background-color:#FEF8DC; margin-right: 0px;">
 	<div>
 			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
 				<h1 align="left" >
@@ -144,11 +144,10 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
-				<br><br>
+	<br><br>
 				</div>
 			</div>	
 	</div>
@@ -185,11 +184,11 @@ width: 180px;
 				</tr>
 				<c:forEach var="dto" items="${orderlists}">	
 					<tr height="30">
-						<td  align="center" bgcolor="#FEF8DC" width="80"><img class="card-img-top" src="${imagePath}/${dto.saveFileName}"  width="200" height="150">${dto.subject }</td> 
-						<td align="center" bgcolor="#FEF8DC" width="80">${dto.order_number}</td>
-						<td align="center" bgcolor="#FEF8DC" width="60">${dto.storeSum }</td>
-						<td align="center" bgcolor="#FEF8DC" width="60" >${dto.cardType}</td>
-						<td align="center" bgcolor="#FEF8DC" width="60">${dto.paymentDate }</td>
+						<td  align="center" width="80"><img class="card-img-top" src="${imagePath}/${dto.saveFileName}"  width="200" height="150">${dto.subject }</td> 
+						<td align="center" width="80">${dto.order_number}</td>
+						<td align="center" width="60">${dto.storeSum }원</td>
+						<td align="center" width="60" >${dto.cardType}</td>
+						<td align="center" width="60">${dto.paymentDate }</td>
 					</tr>
 				</c:forEach>	
 				<tr height="1"><td colspan="6" bgcolor="black"></td></tr>
@@ -206,19 +205,19 @@ width: 180px;
 				<tr height="70">
 					<td align="left" width="100" ><b>이름</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userName }" style="border:none;background-color: #FEF8DC;">
+						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userName }" style="border:none;">
 					</td>	
 				</tr>
 				<tr height="100">
 					<td align="left" width="100" ><b>전화번호</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userTel }" style="border:none;background-color: #FEF8DC;">
+						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userTel }" style="border:none;">
 					</td>
 				</tr>
 				<tr height="70">
 					<td align="left" width="100" ><b>이메일</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="20" maxlength="20" class="txtField" value="${ticketdto.userEmail }" style="border:none;background-color: #FEF8DC;">
+						<input type="text" name="name" size="20" maxlength="20" class="txtField" value="${ticketdto.userEmail }" style="border:none;">
 					</td>
 				</tr>
 				<tr height="1">

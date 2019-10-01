@@ -186,7 +186,7 @@ width: 180px;
 	
 </script>
 </head>
-<body style="background-color: #FDFCF0" onload="init();">
+<body style=" align-content:center; font-family: ;" onload="init();" >
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
@@ -222,9 +222,8 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
 				</div>
@@ -235,19 +234,21 @@ width: 180px;
 <!-- Page Content -->
 
 <div class="container">
-  <!-- Portfolio Item Heading -->
-  <h1 class="my-4">상품/음료/굿즈</h1>
-  <small><h3><b>상품명 : ${dto.subject}</b></h3></small>
+  <!-- Portfolio Item Heading --><br/>
+  <h1 class="my-4" style="margin-left: 50px;">상품/음료/굿즈</h1>
+  <small ><h3 style="margin-left: 50px;"><b> ${dto.subject}</b>/기프트콘</h3></small>
+  <hr width =100% color="black" align="left" size=30 style="margin-left: 50px;"/>
 	<br/>
   <!-- Portfolio Item Row -->
-  <div class="row">
+  <div class="row" >
 
-    <div class="col-md-8">
+    <div class="col-md-7">
       <img class="img-fluid" src="${imagePath}/${dto.saveFileName}" style="padding-left: 50px"  width="500" height="450" alt="">
     </div>
-    <div class="col-md-4" >
-      <h5 class="my-3"><b>상품구성</b></h5>
-      <br/>
+    <div class="col-md-5" >
+      <h4 class="my-3"><font style=""><b>${dto.price}원</b></font></h4>
+
+        <hr width =100% color="#ccccc" align="left" size=30/>
       <h5><b>원 산 지 : 미국 </b></h5>
       <br/>
       <h5><b>유효기간 : 구매일로 부터 6개월</b></h5>
@@ -257,23 +258,24 @@ width: 180px;
 	      	<input type= "hidden" name="paysell_price" value="${dto.price}">
 			<input type="text" style="text-align: center"  name="amount" value="1" size="3" onchange="change();">
 			<input type="button" value=" + " onclick="add();"><input type="button" value=" - " onclick="del();"><br>
-		      <h3 class="my-3"><b>상품가격 :</b>&nbsp;&nbsp;<b><input type="text" name="storeSum" size="4" readonly style="border:none;background-color: #FEF8DC;">원</b></h3><br/>
+		      <h3 class="my-3"><b>총 구매금액 :</b>&nbsp;&nbsp;<b><input type="text" name="storeSum" size="4" readonly style="border:none;">원</b></h3>
 		      <input type="button" class="btn btn-primary" value="구매취소" style="width: 100px;height: 50px;" onclick="javascript:location.href='<%=cp%>/store/list.do';"/>
 			  <input type="submit" class="btn btn-primary" value="구매하기" style="width: 100px;height: 50px;" onclick="paymentsendIt();"/>
 	  </form>
-	  <form action="" method="post" name="basket" >
+	  <form action="" method="post" name="basket" style="align-content: center;">
 		   <input type= "hidden" name="basketsell_price" value="${dto.price}">
 		   <input type="hidden" style="text-align: center;"  name="amount" value="1" size="3" onchange="change();">
 	       <input type="hidden" name="storeSum" size="4" readonly style="border:none;background-color: #FEF8DC;">
-	       <!-- <input type="submit" class="btn btn-primary" value="장바구니" style="width: 100px;height: 50px;" onclick=""/>-->
-	       <input type="image" src="<%=cp%>/mvproject/image/basketimage.jpg" width="70" border="0" onclick="bastketSendIt();">
+	       <input type="submit" class="btn btn-primary" value="장바구니" style="width: 100px;height: 50px; align-self: center;" onclick="bastketSendIt()"/>
+	       <!-- <input type="image" src="<%=cp%>/mvproject/image/basketimage.jpg" width="70" border="0" onclick="bastketSendIt();">-->
 	   </form> 
 	  <br/><br/>	
     </div>
-	  <hr width="100px" size="50"/>
+
   </div>
-  <div class="col-md-12">
-  	<h4>[이용안내]</h4>
+    <hr width =100% color="black" align="left" size=50 style="margin-left: 50px;"/>
+  <div class="col-md-12" style="margin-left: 50px;">
+  	<h4>&nbsp;이용안내</h4>
   	<ul>
 	 <li> 해당 기프트콘은 오프라인 매점에서 실제 상품으로 교환할 수 있는 온라인 상품권입니다.</li>
 	 <li>구매 후 전송받으신 기프트콘은,사용가능한 CGV의 매점에서 지정된 해당 상품으로만 교환이 가능합니다.
@@ -283,18 +285,18 @@ width: 180px;
 	     단, 이벤트 경품 및 프로모션 상품의 경우 유효기간 연장이 불가할 수 있습니다. 유효기간 만료 이후에는 결제금액의 90% 환불이 가능합니다.</li>  
 	 <li>상기 이미지는 실제와 다를 수 있습니다.</li>
  	</ul>
- 	<h4>[취소/환불 규정]</h4> 
+ 	<h4>&nbsp;취소/환불 규정</h4> 
  	<ul>
  		<li>구매자는 최초 유효기간 이내에 결제금액의 100%에 대해 결제취소/환불이 가능하며, 최초 유효기간 만료 후에는 수신자가 결제금액의 90%에 대해 환불 요청 가능합니다.</li>
  		<li>단, 이미 사용된 기프트콘에 대해서는 결제취소/환불 신청이 불가합니다. </li>
  	</ul>
- 	<h4>[결제취소/환불 방법]</h4>
+ 	<h4>&nbsp;결제취소/환불 방법</h4>
  	<ul>
  		<li>결제취소는 모바일App,웹 > MY > 결제내역조회 > 스토어 or 홈페이지 > My CGV > 스토어 > 결제내역의 해당 주문 상세내역에서 가능합니다.</li>
  		<li>기프트콘은 구매일로부터 60일 이내 결제취소 가능하며, 카드 결제취소 가능 기간이 경과하였을 경우, 고객센터로 연락주시면 됩니다)
             환불은 모바일App,웹 > MY > 기프트콘 or 홈페이지 > My CGV > 스토어 > 내 기프트콘에서 환불을 원하는 기프트콘 등록 후 진행 가능하며, 비회원의 경우 고객센터로 신청 가능합니다.</li>
  	</ul>
- 	<h4>[단 이 때, 본인 확인 및 계좌 확인 절차가 진행됩니다.]</h4>
+ 	<h4>&nbsp;단 이 때, 본인 확인 및 계좌 확인 절차가 진행됩니다.</h4>
  	<ul>
  		<li>수신자는 선물받은 기프트콘의 수신거절을 요청할 수 있으며, 이 경우 구매자에게 취소 및 환불에 대한 안내가 이루어집니다.</li>
  		<li> 결제취소 가능 기간이 경과한 후 수신자가 수신거절을 요청할 경우 구매자에게 기프트콘이 재발송됩니다.</li>
@@ -302,9 +304,12 @@ width: 180px;
   </div>
   <!-- /.row -->
   <!-- Related Projects Row -->
-  <h3 class="my-4"><b>이 상품과 함께 본 상품</b></h3>
-
-  <div class="row">
+  <br/>
+    <hr width =100% color="#ccccc" align="left" size=50 style="margin-left: 50px;"/>
+    <br/><br/>
+  <h4 class="my-4" style="margin-left: 60px;">이 상품과 함께 본 상품</h4>
+    <hr width =100% color="#ccccc" align="left" size=50 style="margin-left: 50px;"/>
+  <div class="row" style="margin-left: 50px;">
   	<c:forEach var="dto" items="${lists}">
 	  	<c:if test="${dto.num<=4 }">
 	  	<div class="col-md-3 col-sm-6 mb-4">
@@ -312,7 +317,8 @@ width: 180px;
 	      	<!-- image size 500*300 -->
 	        <img class="img-fluid" src="${imagePath}/${dto.saveFileName}">
 	      </a>
-	       <h5><b>${dto.subject}</b></h5>
+	       <h5><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	       ${dto.subject}</b></h5>
 	    </div>
 	   </c:if> 
     </c:forEach>

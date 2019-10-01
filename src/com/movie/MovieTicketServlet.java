@@ -379,11 +379,10 @@ public class MovieTicketServlet extends HttpServlet{
 		else if(uri.indexOf("logout.do")!=-1) {
 
 			HttpSession session = req.getSession();
-
 			session.removeAttribute("customInfo");		// customInfo에 있는 값 삭제 
 			session.invalidate();						// customInfo라는 변수도 삭제
 
-			url = "/jspProject/cgvMain.jsp";
+			url = "/movie/cgvMain.jsp";
 			forward(req,resp,url);
 		}
 
