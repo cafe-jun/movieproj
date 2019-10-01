@@ -88,6 +88,7 @@ width: 180px;
 <body style="background-color: #FDFCF0;">
 
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
+<!-- 20190930 Ver 형상관리  -->
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -123,10 +124,17 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
+<<<<<<< HEAD
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_evaluation.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+=======
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
+>>>>>>> refs/remotes/origin/master
 				<br><br>
 				</div>
 			</div>	
