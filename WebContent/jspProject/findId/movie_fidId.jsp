@@ -8,7 +8,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>아이디 확인</title>
+
+<link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=cp%>/jspProject/css/style.css" type="text/css"/>
 
 <script type="text/javascript">
 	
@@ -41,22 +44,203 @@
 
 </script>
 
-</head>
-<body bgcolor="#FEF8DC">
+<style type="text/css">
+/* 기본 css */
+a:link { text-decoration: none;}
+a:hover { text-decoration: none;}
 
-아이디 찾기<br/>
-아이디가 기억나지 않으세요?<br/>
+.book {
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.nav {
+
+	text-align: center;
+}
+
+#content {
+	
+	width: 1000px;
+	height: 1500px;
+	margin-left: 400px;
+	margin-right: 500px;
+}
+
+#header { 
+	
+	
+ 	width: 1000px;
+	height: 130px; 
+	padding-left: 300px;
+	padding-right: 300px; 
+
+}
+
+.head {
+
+	width: 1920px;
+	height: 130px; 
+	padding-left: 400px;
+	padding-right: 500px;
+	margin-left: 0px;
+	margin-right: 0px; 
+}
+
+.login{
+	
+	font-size: 9pt;
+
+}
+
+</style>
+
+</head>
+<body style="background-color: #FFFFFF;">
+
+	<c:choose>
+		<c:when test="${empty sessionScope.customInfo.userId }">
+			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:when> 
+		<c:otherwise>
+		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				${sessionScope.customInfo.userId }님 반갑습니다.
+				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+
+	
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+	<div>
+			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
+				<h1 align="left" >
+				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
+				</h1>
+			</div>
+			<div style="display: inline-block; margin-top:10px; float: left; width: 80%; padding-left:30px; padding-top: 20px;" > 
+				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
+					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
+				</h3>
+				<div id="nav" align="center" style="margin-right: 250px;">
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
+				<br><br>
+				</div>
+			</div>	
+	</div>
+</div>
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<br><br>
+
+<img width="100%" src="<%=cp %>/jspProject/image/findIdbanner.jpg" >
+
+<br/><br/><br/><br/><br/>
 
 <form action="" method="post" name="myForm">
 
-<input type="text" name="userName" placeholder="이름을 입력해주세요" size="30"/><br/>
-<input type="text" name="userBirth" placeholder="법정생년월일 6자리를 입력해주세요." size="30"/>[YYYYMMDD]<br/>
-<input type="text" name="userTel" placeholder="휴대전화번호를 입력해주세요." size="30"/>['-'을 제외하고 입력하세요]<br/>
+<table align="center" >
+	<tr>
+		<td align="center">
+			<font face="verdana" size="8" ><b>아이디 찾기</b></font><br/><br/>
+			<font face="verdana" size="2" ><b>아이디가 기억나지 않으세요?원하시는 방법을 선택해 아이디를 확인하실 수 있습니다.</b></font><br/>
+		</td>
+	</tr>
+	<tr height="15px"></tr>
+</table>
+
+<table width="1020px" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#F8F8F8">
+	<tr height="2px">
+		<td colspan="4" width="820px" bgcolor=#898987></td>
+	</tr> 
+	<tr height="2px" valign="top">
+		<td colspan="2" width="440px"></td>
+		<td rowspan="9"  width="31px"></td>
+		<td rowspan="9" width="549px"><img alt="Event Banner" src="<%=cp %>/jspProject/image/findIdright.png" width="549" height="273"></td>
+	</tr>
+	<tr height="45px" valign="middle">
+		<td colspan="2" width="440px" align="left">
+			<font face="verdana" size="4" ><b>간편 찾기</b></font><br/>
+			<font face="verdana" size="2" ><b>입력하신 정보는 아이디 찾기에만 사용되며&nbsp; </b></font><font color="red" face="verdana" size="2" ><b>저장되지 않습니다.</b></font><br/>
+		</td>
+	</tr>
+
+	<tr height="30px">
+		<td colspan="2" align="left"><input type="text" name="userName" placeholder="이름을 입력하세요" style="text-align:left; padding-left:10px; width:230px; height:42px; letter-spacing: 1px" /></td>
+	</tr>
+	<tr height="30px">
+		<td colspan="2" align="left">
+		<input type="text" name="userBirth" placeholder="법정생년월일 8자리를 입력해주세요." style="text-align:left; padding-left:10px; width:230px; height:42px; letter-spacing: 1px" />
+		<font face="verdana" size="2" >[YYYYMMDD]</font>
+		</td>
+	</tr>
+	<tr height="30px">
+		<td colspan="2" align="left">
+		<input type="password" name="userTel" placeholder="전화번호를 입력하세요" style="text-align:left; padding-left:10px; width:230px; height:42px; letter-spacing: 1px"/>
+		<font face="verdana" size="2" >['-'을 제외하고 입력하세요]</font>
+		</td>
+	</tr>
+	<tr height="30px">
+		<td colspan="2" align="left">
+		<input type="button" value="아이디 찾기" style="text-align:center; width:244px; height:42px; letter-spacing: 5px" onclick="findId();" />
+		</td>
+	</tr>
+
+	<tr valign="middle">
+	</tr>
+	<tr height="40px">
+		<td colspan="2" width="440px"></td>
+	</tr>
+	<tr height="2px">
+		<td colspan="2" width="440px"></td>
+	</tr>
+	<tr height="2px">
+		<td colspan="4" width="820px" bgcolor=#898987></td>
+	</tr> 
+	<tr height="30px">
+		<td colspan="4" bgcolor="#ffffff"></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<img src="<%=cp %>/jspProject/image/findIdbase.jpg" width="1020"/>
+		</td>
+	</tr>
+</table>
+
+<div id="footer">
+	<img src="<%=cp%>/jspProject/image/underimage.png">
+</div>
 
 </form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<%-- <input type="text" name="userName" placeholder="이름을 입력해주세요" size="30"/><br/>
+<input type="text" name="userBirth" placeholder="법정생년월일 8자리를 입력해주세요." size="30"/>[YYYYMMDD]<br/>
+<input type="text" name="userTel" placeholder="휴대전화번호를 입력해주세요." size="30"/>['-'을 제외하고 입력하세요]<br/>
+
+
 
 <input type="button" value="아이디 찾기" onclick="findId();"/>
 <input type="button" value="취소" class="btn2" onclick="javascript:location.href='<%=cp%>/movie/login.do';"/>
 
-</body>
-</html>
+ --%>

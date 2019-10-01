@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
 
+<link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=cp%>/jspProject/css/style.css" type="text/css"/>
 
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
@@ -73,7 +74,7 @@
 			setCookie("userId",f.userId.value,0);
 		}
 	 	
-	 	f.action = "<%=cp%>/movie/login_ok.do";
+	 	f.action = "<%=cp %>/movie/login_ok.do";
 		f.submit();
 		 
 	}
@@ -81,55 +82,169 @@
 
 </script>
 
+<style type="text/css">
+/* 기본 css */
+a:link { text-decoration: none;}
+a:hover { text-decoration: none;}
+
+.book {
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.nav {
+
+	text-align: center;
+}
+
+#content {
+	
+	width: 1000px;
+	height: 1500px;
+	margin-left: 400px;
+	margin-right: 500px;
+}
+
+#header { 
+	
+	
+ 	width: 1000px;
+	height: 130px; 
+	padding-left: 300px;
+	padding-right: 300px; 
+
+}
+
+.head {
+
+	width: 1920px;
+	height: 130px; 
+	padding-left: 400px;
+	padding-right: 500px;
+	margin-left: 0px;
+	margin-right: 0px; 
+}
+
+.login{
+	
+	font-size: 9pt;
+
+}
+
+</style>
+
 
 </head>
-<body style="background-color: #FDFCF0;">
+<body style="background-color: #FFFFFF;">
+
+	<c:choose>
+		<c:when test="${empty sessionScope.customInfo.userId }">
+			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:when> 
+		<c:otherwise>
+		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+				${sessionScope.customInfo.userId }님 반갑습니다.
+				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
+				&nbsp;
+				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+
+	
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+	<div>
+			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
+				<h1 align="left" >
+				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
+				</h1>
+			</div>
+			<div style="display: inline-block; margin-top:10px; float: left; width: 80%; padding-left:30px; padding-top: 20px;" > 
+				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
+					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
+				</h3>
+				<div id="nav" align="center" style="margin-right: 250px;">
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
+				<br><br>
+				</div>
+			</div>	
+	</div>
+</div>
+<img src="<%=cp%>/jspProject/image/Gline.png">
+<br><br>
+
+
 <img width="100%" src="<%=cp %>/jspProject/image/loginbanner.jpg" >
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
 
 <form action="" method="post" name="myForm">
  
-<table width="920px" border="1" align="center">
+<table width="820px" border="0" cellpadding="0" cellspacing="0" align="center">
 	<tr>
-		<td colspan="2" align="left"><img src="<%=cp %>/jspProject/image/logintab.jpg">
-	<tr>
-		<td width="540px" align="center"><font face="돋움" size="2" >아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</font></td>
-		<td width="31"></td>
-		<td width="349"></td>
+		<td colspan="4" align="left"><img src="<%=cp %>/jspProject/image/logintab.jpg">	</td>
+	</tr>
+	<tr height="2px">
+		<td colspan="2" width="440px" bgcolor=#898987></td>
+		<td rowspan="8"  width="31px"></td>
+		<td rowspan="8" width="349px"><img alt="Event Banner" src="<%=cp %>/jspProject/image/loginside.jpg"></td>
+	</tr>
+	<tr height="39px" valign="bottom">
+		<td colspan="2" width="440px" align="center"><font face="verdana" size="2" ><b>아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</b></font></td>
 	</tr>
 
-	<tr>
-		<td align="center"><input type="text" name="userId" placeholder="아이디를 입력하세요" size="85"/></td>
+	<tr height="30px">
+		<td colspan="2" align="center"><input type="text" name="userId" placeholder="아이디를 입력하세요" style="text-align:left; padding-left:10px; width:230px; height:42px; letter-spacing: 3px" /></td>
 	</tr>
-	<tr>
-		<td><input type="password" name="userPwd" placeholder="패스워드를 입력하세요" size="85"/></td>
+	<tr height="30px">
+		<td colspan="2" align="center"><input type="password" name="userPwd" placeholder="패스워드를 입력하세요" style="text-align:left; padding-left:10px; width:230px; height:42px; letter-spacing: 3px"/></td>
 	</tr>
-	<tr>
-		<td><input type="button" value="로 그 인" class="btn2" onclick="sendIt();" /></td>
+	<tr height="30px">
+		<td colspan="2" align="center"><input type="button" value="로  그  인" style="text-align:center; width:240px; height:42px; letter-spacing: 5px" class="btn2" onclick="sendIt();" /></td>
 	</tr>
-	
-</table>
 
-
-<table align="center">
-	<tr>
-		<td><input type="checkbox" name="idSaveCheck" />아이디 저장</td>
-		<td align="right">
+	<tr valign="middle">
+		<td width="220px" align="left"><input type="checkbox" name="idSaveCheck" /><font face="verdana" size="2" >아이디 저장</font></td>
+		<td width="220px" align="right">
 			<font size="2">
-		 	<a href="<%=cp%>/movie/findId.do">아이디 찾기></a>
-		 	<a href="<%=cp%>/movie/findPwd.do">비밀번호 찾기></a>
+		 	<a href="<%=cp%>/movie/findId.do"><font face="verdana" size="2" >아이디 찾기&nbsp;></font></a>&nbsp;&nbsp;
+		 	<a href="<%=cp%>/movie/findPwd.do"><font face="verdana" size="2" >비밀번호 찾기&nbsp;></font></a>
 		 	</font>
-		 </td>
+		</td>
 	</tr>
-</table>
-<table align="center">
+	<tr height="40px">
+		<td colspan="2" width="440px"></td>
+	</tr>
+	<tr height="2px">
+		<td colspan="2" width="440px" bgcolor=#898987></td>
+	</tr>
+	<tr height="30px"></tr>
 	<tr>
-		<td colspan="2" align="center">${message }</td>
+		<td colspan="4">
+			<img src="<%=cp %>/jspProject/image/loginbottom.jpg" width="820"/>
+		</td>
 	</tr>
 </table>
+<br/><br/><br/><br/>	
+
+<div id="footer">
+	<img src="<%=cp%>/jspProject/image/underimage.png">
+</div>
 
 
 </form>
+
+
 
 </body>
 </html>
