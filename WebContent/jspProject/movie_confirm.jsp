@@ -76,7 +76,7 @@ a:hover { text-decoration: none;}
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
 			</div>
 		</c:when> 
 		<c:otherwise>
@@ -84,7 +84,7 @@ a:hover { text-decoration: none;}
 				${sessionScope.customInfo.userId }님 반갑습니다.
 				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
 			</div>
 		</c:otherwise>
 	</c:choose>
