@@ -86,13 +86,15 @@ public class MovieStoreServlet extends HttpServlet{
 			url="/mvproject/priceInfo.jsp";
 			forward(req, resp, url);	
 		}else if(uri.indexOf("payment.do")!=-1) {
+			
+			
 			HttpSession session = req.getSession();
 			CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");
 			String userId = customInfo.getUserId();
 			MovieTicketDTO ticketdto = ticketdao.getReadData(userId);
 			String imagePath = cp +"/pds/storeFile";
 			List<MovieStoreOrderDTO> orderlists = orderdao.ordergetList(userId);
-			
+
 			int totalSum = 0;
 			for (int i = 0; i < orderlists.size(); i++) {
 				totalSum += orderlists.get(i).getStoreSum();
@@ -105,10 +107,13 @@ public class MovieStoreServlet extends HttpServlet{
 			forward(req, resp, url);	
 			
 		}else if(uri.indexOf("bill.do")!=-1){	
+			
 			CustomInfo custominfo = (CustomInfo)req.getSession().getAttribute("customInfo");
 			String userId = custominfo.getUserId();
+			System.out.println(userId);
 			MovieTicketDTO ticketdto = ticketdao.getReadData(userId);
 			String cardType = req.getParameter("cardType");
+			System.out.println(cardType);
 			System.out.println("bill.do :"+userId);
 			String imagePath = cp +"/pds/storeFile";
 			List<MovieStoreOrderDTO> orderlists = orderdao.paymentgetList(userId);

@@ -72,19 +72,23 @@ a:hover { text-decoration: none;}
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>My CGV</b></a>
 			</div>
 		</c:when> 
 		<c:otherwise>
 		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				${sessionScope.customInfo.userId }님 반갑습니다.
-				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
-				&nbsp;
-				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
+				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
+				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/updated.do" style="color: black"><b>My CGV</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/moviebill.do" style="color: black"><b>영화 주문정보</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/store/bill.do" style="color: black"><b>스토어 주문정보</b></a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -105,7 +109,6 @@ a:hover { text-decoration: none;}
 				<div id="nav" align="center" style="margin-right: 250px;">
 				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
 				<a class="book" href="<%=cp %>/movie/list.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
 				</div>

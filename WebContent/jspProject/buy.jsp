@@ -99,6 +99,7 @@ height: 28px;
 }
 
 </style>
+
 <script type="text/javascript">
 
 	function showHide(id) {
@@ -135,9 +136,10 @@ height: 28px;
 		}
 	}
 	
-	function sendIt() {	
-		var f = document.myForms
-	 	
+	function sendIt() {
+		
+		var f = document.myForms;
+		
 		if(!f.num1.value){
 			alert("카드번호를 입력해주세요.");
 			f.num1.focus();
@@ -183,12 +185,15 @@ height: 28px;
 			alert("생년월일을 입력해주세요.");
 			f.birth.focus();
 			return;
-		}	
+		}
+		
+
 		alert("결제를 진행할까요?");
-	
-		f.action = "<%=cp%>/movie/buy_ok.do";
+		f.action= '<%=cp%>/movie/buy_ok.do';
 		f.submit();
 	}
+	
+
 </script>
 
 </head>
@@ -199,13 +204,13 @@ height: 28px;
 		<dl style="background-color: white; color: #5a5a5a; height: 35px; border-top-left-radius: 5px; border-top-right-radius: 5px; margin-bottom: -20px; border: 1px solid #5a5a5a;"><b>결제하실 금액</b></dl>
 		<dl style="background-color: rgb(71,71,71); color: white; height: 50px; text-align: right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; margin-bottom: -20px; font-size: 15pt;" ><b>${cost }&nbsp;원&nbsp;</b></dl>
 	</div>
-	<br/><br/>
+<br/><br/>
 	<div>
 		<dl style="background-color: rgb(217,231,235); color: #5a5a5a; height: 25px; border-top-left-radius: 5px; border-top-right-radius: 5px; margin-bottom: -20px; border: 1px solid #5a5a5a;"><b>할인내역</b></dl>
 		<dl style="background-color: white; color: #5a5a5a; height: 35px; border: 1px solid #5a5a5a; margin-bottom: -20px;"><b>총 할인금액</b></dl>
 		<dl style="background-color: rgb(60,70,79); color: rgb(137,229,255); height: 50px; text-align: right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; margin-bottom: -20px; font-size: 15pt;" ><b>0&nbsp;원&nbsp;</b></dl>
 	</div>
-	<br/>
+<br/>
 	<div>
 		<dl style="background-color: rgb(240,235,210); color: #5a5a5a; height: 25px; border-top-left-radius: 5px; border-top-right-radius: 5px; margin-bottom: -20px; border: 1px solid #5a5a5a;"><b>결제내역</b></dl>
 		<dl style="background-color: white; color: #5a5a5a; height: 35px; border: 1px solid #5a5a5a; margin-bottom: -20px;"><b>남은 결제금액</b></dl>
@@ -218,22 +223,27 @@ height: 28px;
 <c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>My CGV</b></a>
 			</div>
 		</c:when> 
 		<c:otherwise>
 		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				${sessionScope.customInfo.userId }님 반갑습니다.
-				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
-				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
+				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/updated.do" style="color: black"><b>My CGV</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/moviebill.do" style="color: black"><b>영화 주문정보</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/store/bill.do" style="color: black"><b>스토어 주문정보</b></a>
 			</div>
 		</c:otherwise>
 	</c:choose>
+	
 <img src="<%=cp %>/jspProject/image/Gline.png">
 <div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
 	<div>
@@ -247,10 +257,10 @@ height: 28px;
 					<img src="<%=cp %>/jspProject/data/image/ticket.png">
 				</h3>
 				<div id="nav" align="left" style="margin-right: 350px;">
-				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
-			<br><br>
+				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/movie/movie_select.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/store/list.do" style="color: black"><b>스토어</b></a>
+				<br><br>
 				</div>
 			</div>	
 	</div>
@@ -300,15 +310,9 @@ height: 28px;
 			<b>선택 불가능한 할인 쿠폰 항목은 비활성화처리됩니다.</b>
 		</td>
 	</tr>
-	
-<%-- 	<tr height="50">
-	<%if(==cgv){ %>
-	<%}else if(==cjone){ %>
-	<td rowspan="2">             </td>
-	<%} %> --%>
-	
+
 	<tr height="50" style="border: 1px solid; border-color: rgb(223,222,214);">
-		<td width="200" style="border: 1px solid; border-color: rgb(223,222,214); cursor: pointer;" onclick="javascript:location.href='<%=cp%>/movie/cgvCoupon.do';">
+		<td width="200" style="border: 1px solid; border-color: rgb(223,222,214); cursor: pointer;" onclick="javascript:location.href='<%=cp%>/movie/cgv.do';">
 		
 			<b>&nbsp;CGV 할인쿠폰</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt="" src="<%=cp%>/jspProject/data/image/thenext2.png">
 		</td>
@@ -317,7 +321,7 @@ height: 28px;
 <tr height="50">
 	<td colspan="2" style="color: rgb(48,103,145); font-family: 굴림;"><b>&nbsp;&nbsp;●CGV 할인쿠폰</b></td>
 	<td align="right">
-		<input type="button" class="btn3" value="등록하기" onclick=""/>
+		<!-- <input type="button" class="btn3" value="등록하기" onclick=""/> -->
 		<input type="button" class="btn4" value="전체 쿠폰" onclick=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</td>
 </tr>
@@ -326,6 +330,11 @@ height: 28px;
 	<td width="200" style="font-size: 10pt; color: rgb(102,102,102); font-family: 굴림;" align="center" height="30">&nbsp;&nbsp;&nbsp;&nbsp;쿠폰 번호</td>
 	<td width="200" style="font-size: 10pt; color: rgb(102,102,102); font-family: 굴림;" align="left" height="30">&nbsp;&nbsp;&nbsp;&nbsp;유효기간</td>
 </tr>
+
+<tr height="2">
+	<td colspan="3" style="background-color: rgb(223,222,214);"></td>
+</tr>
+
 <tr height="250">
 	<td align="center" colspan="3" style="background-color: rgb(242,240,228);">사용 가능한 CGV 할인 쿠폰이(가) 없습니다.</td>
 </tr>
@@ -344,21 +353,21 @@ height: 28px;
 		</td>
 	</tr>
 	<tr height="50">
-		<td width="200" style="border-top: 1px solid; border-right: 1px solid; border-top-color: rgb(223,222,214); border-right-color: rgb(223,222,214); cursor: pointer;" onclick="location.href='<%=cp%>/movie/cjone.do'">
+		<td width="200" style="border-top: 1px solid; border-right: 1px solid; border-top-color: rgb(223,222,214); border-right-color: rgb(223,222,214); cursor: pointer;" onclick="javascript:location.href='<%=cp%>/movie/cjone.do';">
 			<b>&nbsp;CJ ONE 할인쿠폰</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt="" src="<%=cp%>/jspProject/data/image/thenext2.png">
 		</td>
 		<td style="border: 1px solid; border-color: rgb(223,222,214);">             </td>
 	</tr>
 	
 	<tr height="3">
-		<td colspan="2" style="background-color: rgb(242,240,229)"></td>
+		<td colspan="2" style="background-color: rgb(242,240,229);"></td>
 	</tr>
 	
-	<tr height="40" style="background-color: rgb(254,248,220);"></tr>
-
 </table>
 
 <table width="800" align="center" cellpadding="0" cellspacing="0" bgcolor="#FEF8DC">
+
+<tr height="40" style="background-color: rgb(223,222,214);"></tr>
 
 <tr style="background-color: rgb(51,51,51); color: white;" height="40" >
 	<td align="left"><b>&nbsp;&nbsp;STEP 2.</b></td>
@@ -536,26 +545,27 @@ height: 28px;
 	<td width="50" style="color: rgb(204,204,193); text-align: right; font-size: 10pt">
 		좌석<br/>번호
 	</td>
-	<td width="150" style="color: rgb(204,204,193); font-size: 10pt"><b>
-	<%List<Movie_PaymentDTO> lists=new ArrayList<>();
-		lists=(List<Movie_PaymentDTO>)session.getAttribute("lists");
-		for(Movie_PaymentDTO dto:lists){%>
-		<%=dto.getSitnum() %><br>
+	<td width="150" style="color: rgb(204,204,193); font-size: 10pt"><b><%List<Movie_PaymentDTO> lists=new ArrayList<>();
+	lists=(List<Movie_PaymentDTO>)session.getAttribute("lists");
+	for(Movie_PaymentDTO dto:lists){%>
+	<%=dto.getSitnum() %><br>
 	<%}%></b></td>
 	
+	
 	<td width="200" align="left">
-		<img  src="<%=cp%>/jspProject/data/image/pay.png" style="cursor: pointer;" onclick="sendIt();" />
+		<!-- <a href="javascript:alert('결제를 진행할까요?')"> --><img alt="" src="<%=cp%>/jspProject/data/image/pay.png" onclick="sendIt();" style="cursor: pointer">
 	</td>
 	
 	<td width="700" align="left"></td>
 <tr height="8">
 	<td></td>
 	<td>
-		<input type="hidden" name="movietype" value="${movietype }">
-		<input type="hidden" name="timetype" value="${timetype }">
-		<input type="hidden" name="roomtype" value="${roomtype }">
-		<input type="hidden" name="sitnum" value="${dto.getSitnum() }">
-		<input type="hidden" name="cost" value="${cost }"> 
+		<input type="hidden" name="movietype" value="${movietype }"/>
+		<input type="hidden" name="timetype" value="${timetype }"/>
+		<input type="hidden" name="roomtype" value="${roomtype }"/>
+		<input type="hidden" name="sitnum" value="${dto.getSitnum() }"/>
+		<input type="hidden" name="cost" value="${cost }"/>
+		<input type="hidden" name="member" value="${member }"/>
 </tr>
 </table>
 <!-- 열심히 하세용 -->
@@ -563,7 +573,7 @@ height: 28px;
 <table>
 <tr>
 	<td>
-		<img alt="" src="<%=cp%>/jspProject/data/image/undercode.png" >
+		<img alt="" src="<%=cp%>/jspProject/data/image/undercode.png">
 	</td>
 </tr>
 </table>

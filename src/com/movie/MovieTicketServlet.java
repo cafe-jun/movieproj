@@ -423,6 +423,7 @@ public class MovieTicketServlet extends HttpServlet{
 			if(pageNum!=null){
 				currentPage=Integer.parseInt(pageNum);
 			}
+			
 			int dataCount=madao.countData(movietype);//전체 데이터 구하기
 			req.setAttribute("dataCount",new Integer(dataCount));
 			int numPerPage=10;//총 페이지수 구하기
@@ -846,9 +847,103 @@ public class MovieTicketServlet extends HttpServlet{
 			url = "/jspProject/pay.jsp";
 			forward(req, resp, url);
 
+		}else if(uri.indexOf("cjone.do")!=-1) {
+			
+			HttpSession session = req.getSession();
+
+			List<Movie_PaymentDTO> lists = (List<Movie_PaymentDTO>)session.getAttribute("lists");
+			
+			String userId = ((CustomInfo)session.getAttribute("customInfo")).getUserId();
+			
+			Movie_PaymentDAO dao2 = new Movie_PaymentDAO(conn);
+			Movie_PaymentDTO dto = dao2.getReadData(userId);
+			
+			String movietype = "";
+			String timetype = "";
+			int sitnum = 0;
+			int roomtype = 0;
+			int cost = 0;
+			
+			for(Movie_PaymentDTO mcdto : lists) {
+				movietype=mcdto.getMovietype();
+				timetype=mcdto.getTimetype();
+				roomtype=mcdto.getRoomtype();
+				Movie_selectDAO msdao=new Movie_selectDAO(conn);
+				cost+=msdao.getcost(movietype, timetype, roomtype);
+			}
+
+			int member=lists.size();
+
+			req.setAttribute("userId", userId);
+			req.setAttribute("movietype", movietype);
+			req.setAttribute("timetype", timetype);
+			req.setAttribute("roomtype", roomtype);
+			req.setAttribute("cost", cost);
+			req.setAttribute("member", member);
+
+			url ="/jspProject/cjone.jsp";
+			forward(req, resp, url);
+			
+		}
+		
+		else if(uri.indexOf("cgv.do")!=-1) {
+			
+			HttpSession session = req.getSession();
+
+			List<Movie_PaymentDTO> lists = (List<Movie_PaymentDTO>)session.getAttribute("lists");
+			
+			String userId = ((CustomInfo)session.getAttribute("customInfo")).getUserId();
+			
+			Movie_PaymentDAO dao2 = new Movie_PaymentDAO(conn);
+			Movie_PaymentDTO dto = dao2.getReadData(userId);
+			
+			String movietype = "";
+			String timetype = "";
+			int sitnum = 0;
+			int roomtype = 0;
+			int cost = 0;
+			
+			for(Movie_PaymentDTO mcdto : lists) {
+				movietype=mcdto.getMovietype();
+				timetype=mcdto.getTimetype();
+				roomtype=mcdto.getRoomtype();
+				Movie_selectDAO msdao=new Movie_selectDAO(conn);
+				cost+=msdao.getcost(movietype, timetype, roomtype);
+			}
+
+			int member=lists.size();
+
+			req.setAttribute("userId", userId);
+			req.setAttribute("movietype", movietype);
+			req.setAttribute("timetype", timetype);
+			req.setAttribute("roomtype", roomtype);
+			req.setAttribute("cost", cost);
+			req.setAttribute("member", member);
+
+			url ="/jspProject/buy.jsp";
+			forward(req, resp, url);
+		
+		}else if(uri.indexOf("moviebill.do")!=-1) {
+			
+		
+			MovieTicketDAO ticketdao = new MovieTicketDAO(DBCPConn.getConnection());
+			Movie_PaymentDAO paymentdao = new Movie_PaymentDAO(DBCPConn.getConnection());
+			
+			CustomInfo custominfo = (CustomInfo)req.getSession().getAttribute("customInfo");
+			String userId = custominfo.getUserId();
+			MovieTicketDTO ticketdto = ticketdao.getReadData(userId);
+			List<Movie_PaymentDTO> paylist = paymentdao.getListDate(userId);
+		
+			req.setAttribute("paylist",paylist);
+			req.setAttribute("ticketdto",ticketdto);
+	
+			url = "/jspProject/moviepaybill.jsp";
+			forward(req, resp, url);
+			
 		}
 	}
 }
+
 
 
 

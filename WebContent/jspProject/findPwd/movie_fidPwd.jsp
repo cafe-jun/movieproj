@@ -90,19 +90,23 @@ a:hover { text-decoration: none;}
 <c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>My CGV</b></a>
 			</div>
 		</c:when> 
 		<c:otherwise>
 		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				${sessionScope.customInfo.userId }님 반갑습니다.
-				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
-				&nbsp;
-				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
+				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
+				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/updated.do" style="color: black"><b>My CGV</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/moviebill.do" style="color: black"><b>영화 주문정보</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/store/bill.do" style="color: black"><b>스토어 주문정보</b></a>
 			</div>
 		</c:otherwise>
 	</c:choose>

@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -45,6 +46,9 @@ a:hover { text-decoration: none;}
 	height: 1500px;
 	margin-left: 400px;
 	margin-right: 500px;
+	
+	background-image: url("./image/bg_c_bricks.png");
+	
 }
 
 #header { 
@@ -54,6 +58,13 @@ a:hover { text-decoration: none;}
 	height: 130px; 
 	padding-left: 300px;
 	padding-right: 300px; 
+
+}
+
+#container{
+
+	background-repeat: repeat-x;
+	background-position: 0px 70px;
 
 }
 
@@ -73,6 +84,7 @@ a:hover { text-decoration: none;}
 
 }
 
+
 .floating{
 position: fixed;
 right: 50%;
@@ -91,19 +103,23 @@ width: 180px;
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/main.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>My CGV</b></a>
 			</div>
 		</c:when> 
 		<c:otherwise>
 		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				${sessionScope.customInfo.userId }님 반갑습니다.
-				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
-				&nbsp;
-				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
+				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
+				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/updated.do" style="color: black"><b>My CGV</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/moviebill.do" style="color: black"><b>영화 주문정보</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/store/bill.do" style="color: black"><b>스토어 주문정보</b></a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -122,7 +138,7 @@ width: 180px;
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
 				<br><br>
@@ -134,9 +150,9 @@ width: 180px;
 <br><br>
 
 <!-- 내용부분 -->
-
+<div id="container" align="center" style="background-image: url('<%=cp%>/jspProject/image/bg_c_bricks.png');">
 <div id="content" align="center">
-<img style="padding-bottom: 30px;" src="<%=cp%>/jspProject/image/movie_selection.gif"/>
+	<img style="padding-bottom: 30px;" src="<%=cp%>/jspProject/image/movie_selection.gif"/>
 	<div id="carousel1" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#carousel1" data-slide-to="0" class="active"></li>
@@ -148,8 +164,8 @@ width: 180px;
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 			
-			<a href="https://youtu.be/0uC2FaZ4h1I" target="_blank" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190910_1_fn_MoviePlay(2)" 
-			title="가장 보통의 연애 10월 2일 대개봉" data-id="14805" data-name="가장 보통의 연애"></a>
+			<a href="<%=cp %>/jspProject/booking.do" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190910_1_fn_MoviePlay(2)" 
+			title="가장 보통의 연애 예매하러 가기!" data-id="14805" data-name="가장 보통의 연애"></a>
 				<img class="d-block w-100"
 					src="<%=cp %>/jspProject/image/movie1.jpg"
 					alt="First slide">
@@ -157,29 +173,29 @@ width: 180px;
 			</div>
 			<div class="carousel-item">
 			
-			<a href="https://youtu.be/KeEtLXYsUJI" target="_blank" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190924_33_fn_MoviePlay(2)" 
-			title="역사를 뒤바꾼 기록, 잊혀진 772명의 기록! 장사리 잊혀진 영웅들 절찬 상영중" data-id="14789" data-name="장사리  잊혀진 영웅들"></a>
+			<a href="<%=cp %>/jspProject/booking.do" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190924_33_fn_MoviePlay(2)" 
+			title="역사를 뒤바꾼 기록, 잊혀진 772명의 기록! 장사리 잊혀진 영웅들 예매하러 가기!" data-id="14789" data-name="장사리  잊혀진 영웅들"></a>
 				<img class="d-block w-100"
 					src="<%=cp %>/jspProject/image/movie2.jpg"
 					alt="Second slide">
 			</div>
 			<div class="carousel-item">
-				<a href="https://youtu.be/gH6BVcn6Sbg" target="_blank" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" 
-				onclick="javascript:adi_lottecinema_20190911_1_fn_MoviePlay(2)" title="단짠단짠 코미디 퍼펙트맨 10월 2일 대개봉!" data-id="14831" data-name="퍼펙트맨"></a>
+				<a href="<%=cp %>/jspProject/booking.do" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" 
+				onclick="javascript:adi_lottecinema_20190911_1_fn_MoviePlay(2)" title="단짠단짠 코미디 퍼펙트맨 예매하러 가기!" data-id="14831" data-name="퍼펙트맨"></a>
 				<img class="d-block w-100"
 					src="<%=cp %>/jspProject/image/movie3.jpg"
 					alt="Third slide">
 			</div>
 			<div class="carousel-item">
-			<a href="https://youtu.be/aHKkzWKyU1w" target="_blank" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190909_22_fn_MoviePlay(2)" 
-			title="한국사회 부정부패 향한 통쾌한 핵사이다! 헤럴드팝 나쁜놈 잡는 법칙 양자물리학 9월 25일 대개봉" data-id="14718" data-name="양자물리학"></a>
+			<a href="<%=cp %>/jspProject/booking.do" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190909_22_fn_MoviePlay(2)" 
+			title="한국사회 부정부패 향한 통쾌한 핵사이다! 헤럴드팝 나쁜놈 잡는 법칙 양자물리학 예매하러 가기!" data-id="14718" data-name="양자물리학"></a>
 				<img class="d-block w-100"
 					src="<%=cp %>/jspProject/image/movie4.jpg"
 					alt="Fourth slide">
 			</div>
 			<div class="carousel-item">
-				<a href="https://youtu.be/x60mB0zXZ38 target="_blank" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190910_98_fn_MoviePlay(2)" 
-				title="상상 그 이상의 전율 베니스 영화제 황금사자상 호아킨 피닉스 토드 필립스 감독 작품 조커 10월 2일 대개봉" data-id="14879" data-name="조커"></a>
+				<a href="<%=cp %>/jspProject/booking.do" style="width: 135px;height: 135px;cursor:pointer;position: absolute;left: 255px;top: 255px;" onclick="javascript:adi_lottecinema_20190910_98_fn_MoviePlay(2)" 
+				title="상상 그 이상의 전율 베니스 영화제 황금사자상 호아킨 피닉스 토드 필립스 감독 작품 조커 예매하러 가기!" data-id="14879" data-name="조커"></a>
 			
 				<img class="d-block w-100"
 					src="<%=cp %>/jspProject/image/movie5.jpg"
@@ -193,6 +209,8 @@ width: 180px;
 	<img src="<%=cp%>/jspProject/image/eventPage.png">
 </div>
 </div>
+</div>
+
 <div class="floating">
 	<img style="border: 3px solid red; border-radius: 7px;" src="<%=cp%>/jspProject/image/floating.png">
 </div>

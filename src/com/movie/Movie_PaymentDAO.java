@@ -140,4 +140,38 @@ public class Movie_PaymentDAO {
 		}
 		return result;
 	}
+	public List<Movie_PaymentDTO> getListDate(String userId) {
+		
+		List<Movie_PaymentDTO> paylist = new ArrayList<Movie_PaymentDTO>();
+		Movie_PaymentDTO dto = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		try {
+			sql  =  "select movietype,timetype,roomtype,sitnum,userId,reservenum,paymethod ";
+			sql +=  " from movie_paymenttable where userId=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				dto = new Movie_PaymentDTO();
+				dto.setMovietype(rs.getString("movietype"));
+				dto.setTimetype(rs.getString("timetype"));
+				dto.setRoomtype(rs.getInt("roomtype"));
+				dto.setSitnum(rs.getInt("sitnum"));
+				dto.setUserId(rs.getString("userId"));
+				dto.setReserveNum(rs.getInt("reservenum"));
+				dto.setPayMethod(rs.getString("paymethod"));
+				paylist.add(dto);
+			}
+			rs.close();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return paylist;
+	}	
 }

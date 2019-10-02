@@ -1,6 +1,17 @@
 package com.movie;
 
 public class Movie_PaymentDTO {
+	
+	String movietype;
+	String timetype;
+	int roomtype;
+	int sitnum;
+	String userId;
+	String payMethod;
+	int reserveNum;
+	
+	
+	
 	public String getTimetype() {
 		return timetype;
 	}
@@ -31,13 +42,8 @@ public class Movie_PaymentDTO {
 	public void setUserId(String userid) {
 		this.userId = userid;
 	}
-	String movietype;
-	String timetype;
-	int roomtype;
-	int sitnum;
-	String userId;
-	String payMethod;
-	int reserveNum;
+	
+	
 	
 	public int getReserveNum() {
 		return reserveNum;
