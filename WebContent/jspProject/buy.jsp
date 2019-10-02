@@ -99,7 +99,6 @@ height: 28px;
 }
 
 </style>
-
 <script type="text/javascript">
 
 	function showHide(id) {
@@ -135,57 +134,61 @@ height: 28px;
 	    	}
 		}
 	}
-	if(!f.num1.value){
-		alert("카드번호를 입력해주세요.");
-		f.num1.focus();
-		return;
-	}
 	
-	if(!f.num2.value){
-		alert("카드번호를 입력해주세요.");
-		f.num2.focus();
-		return;
-	}
+	function sendIt() {	
+		var f = document.myForms
+	 	
+		if(!f.num1.value){
+			alert("카드번호를 입력해주세요.");
+			f.num1.focus();
+			return;
+		}
+		
+		if(!f.num2.value){
+			alert("카드번호를 입력해주세요.");
+			f.num2.focus();
+			return;
+		}
+		
+		if(!f.num3.value){
+			alert("카드번호를 입력해주세요.");
+			f.num3.focus();
+			return;
+		}
+		
+		if(!f.num4.value){
+			alert("카드번호를 입력해주세요.");
+			f.num4.focus();
+			return;
+		}
+		
+		if(!f.month.value){
+			alert("카드 유효기간을 정확히 입력해주세요.");
+			f.month.focus();
+			return;
+		}
+		if(!f.year.value){
+			alert("카드 유효기간을 정확히 입력해주세요.");
+			f.year.focus();
+			return;
+		}
+		
+		if(!f.password.value){
+			alert("비밀번호를 입력해주세요.");
+			f.password.focus();
+			return;
+		}
+		
+		if(!f.birth.value){
+			alert("생년월일을 입력해주세요.");
+			f.birth.focus();
+			return;
+		}	
+		alert("결제를 진행할까요?");
 	
-	if(!f.num3.value){
-		alert("카드번호를 입력해주세요.");
-		f.num3.focus();
-		return;
+		f.action = "<%=cp%>/movie/buy_ok.do";
+		f.submit();
 	}
-	
-	if(!f.num4.value){
-		alert("카드번호를 입력해주세요.");
-		f.num4.focus();
-		return;
-	}
-	
-	if(!f.month.value){
-		alert("카드 유효기간을 정확히 입력해주세요.");
-		f.month.focus();
-		return;
-	}
-	if(!f.year.value){
-		alert("카드 유효기간을 정확히 입력해주세요.");
-		f.year.focus();
-		return;
-	}
-	
-	if(!f.password.value){
-		alert("비밀번호를 입력해주세요.");
-		f.password.focus();
-		return;
-	}
-	
-	if(!f.birth.value){
-		alert("생년월일을 입력해주세요.");
-		f.birth.focus();
-		return;
-	}
-	
-	alert("결제를 진행할까요?");
-	f.action = "<%=cp%>/movie/buy_ok.do";
-	f.submit();
-
 </script>
 
 </head>
@@ -196,13 +199,13 @@ height: 28px;
 		<dl style="background-color: white; color: #5a5a5a; height: 35px; border-top-left-radius: 5px; border-top-right-radius: 5px; margin-bottom: -20px; border: 1px solid #5a5a5a;"><b>결제하실 금액</b></dl>
 		<dl style="background-color: rgb(71,71,71); color: white; height: 50px; text-align: right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; margin-bottom: -20px; font-size: 15pt;" ><b>${cost }&nbsp;원&nbsp;</b></dl>
 	</div>
-<br/><br/>
+	<br/><br/>
 	<div>
 		<dl style="background-color: rgb(217,231,235); color: #5a5a5a; height: 25px; border-top-left-radius: 5px; border-top-right-radius: 5px; margin-bottom: -20px; border: 1px solid #5a5a5a;"><b>할인내역</b></dl>
 		<dl style="background-color: white; color: #5a5a5a; height: 35px; border: 1px solid #5a5a5a; margin-bottom: -20px;"><b>총 할인금액</b></dl>
 		<dl style="background-color: rgb(60,70,79); color: rgb(137,229,255); height: 50px; text-align: right; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; margin-bottom: -20px; font-size: 15pt;" ><b>0&nbsp;원&nbsp;</b></dl>
 	</div>
-<br/>
+	<br/>
 	<div>
 		<dl style="background-color: rgb(240,235,210); color: #5a5a5a; height: 25px; border-top-left-radius: 5px; border-top-right-radius: 5px; margin-bottom: -20px; border: 1px solid #5a5a5a;"><b>결제내역</b></dl>
 		<dl style="background-color: white; color: #5a5a5a; height: 35px; border: 1px solid #5a5a5a; margin-bottom: -20px;"><b>남은 결제금액</b></dl>
@@ -533,15 +536,15 @@ height: 28px;
 	<td width="50" style="color: rgb(204,204,193); text-align: right; font-size: 10pt">
 		좌석<br/>번호
 	</td>
-	<td width="150" style="color: rgb(204,204,193); font-size: 10pt"><b><%List<Movie_PaymentDTO> lists=new ArrayList<>();
-	lists=(List<Movie_PaymentDTO>)session.getAttribute("lists");
-	for(Movie_PaymentDTO dto:lists){%>
-	<%=dto.getSitnum() %><br>
+	<td width="150" style="color: rgb(204,204,193); font-size: 10pt"><b>
+	<%List<Movie_PaymentDTO> lists=new ArrayList<>();
+		lists=(List<Movie_PaymentDTO>)session.getAttribute("lists");
+		for(Movie_PaymentDTO dto:lists){%>
+		<%=dto.getSitnum() %><br>
 	<%}%></b></td>
 	
-	
 	<td width="200" align="left">
-		<img alt="" src="<%=cp%>/jspProject/data/image/pay.png" onclick="sendIt();">
+		<img  src="<%=cp%>/jspProject/data/image/pay.png" style="cursor: pointer;" onclick="sendIt();" />
 	</td>
 	
 	<td width="700" align="left"></td>
@@ -560,7 +563,7 @@ height: 28px;
 <table>
 <tr>
 	<td>
-		<img alt="" src="<%=cp%>/jspProject/data/image/undercode.png">
+		<img alt="" src="<%=cp%>/jspProject/data/image/undercode.png" >
 	</td>
 </tr>
 </table>

@@ -266,7 +266,7 @@ img {vertical-align: middle;}
 				<div id="nav" align="center" style="margin-right: 270px;">
 				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
 				<a href="<%=cp %>/movie/movie_select.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/cgv/event.do" style="color: black"><b>스토어</b></a>
+				<a href="<%=cp %>/store/list.do" style="color: black"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	

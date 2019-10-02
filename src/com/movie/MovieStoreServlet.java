@@ -49,11 +49,9 @@ public class MovieStoreServlet extends HttpServlet{
 		File f = new File(path);
 		if(!f.exists())
 			f.mkdirs();
-		
 		if(uri.indexOf("write.do")!=-1) {
 			url = "/mvproject/write.jsp";
-			forward(req, resp, url);
-			
+			forward(req, resp, url);		
 		}else if(uri.indexOf("write_ok.do")!=-1) {
 			String encType = "UTF-8";
 			int maxSize = 10*10*1024;
@@ -87,7 +85,6 @@ public class MovieStoreServlet extends HttpServlet{
 			req.setAttribute("lists",lists);
 			url="/mvproject/priceInfo.jsp";
 			forward(req, resp, url);	
-		
 		}else if(uri.indexOf("payment.do")!=-1) {
 			HttpSession session = req.getSession();
 			CustomInfo customInfo = (CustomInfo)session.getAttribute("customInfo");

@@ -175,11 +175,8 @@ width: 180px;
 <!-- Custom styles for this template -->
 <link href="css/scrolling-nav.css" rel="stylesheet">
 </head>
-<<<<<<< HEAD
-<body id="page-top">
-=======
 <body id="page-top" style="align-content: center; align-items: center; align-self: center;">
->>>>>>> loadtest
+
 <c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
@@ -198,17 +195,10 @@ width: 180px;
 				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
 			</div>
 		</c:otherwise>
-	</c:choose>
-<<<<<<< HEAD
-	<img src="<%=cp%>/jspProject/image/Gline.png" > 
-<div class="head" style="background-color: #FEF8DC; margin: -15px; padding-bottom: -20px;">
-=======
-
-	
-<img src="<%=cp%>/jspProject/image/Gline.png">
-<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
->>>>>>> loadtest
-	<div>
+	</c:choose>	
+	<img src="<%=cp%>/jspProject/image/Gline.png">
+	<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+		<div>
 			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
 				<h1 align="left" >
 				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp%>/jspProject/image/cgvLogo.png"></a>
@@ -218,19 +208,11 @@ width: 180px;
 				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
-<<<<<<< HEAD
-				<div id="nav" align="center" style="margin-right: 250px; border: 0;">
-				<a class="book" href="<%=cp %>/jspProject/movie.do" style="color: #222222;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/booking.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/jspProject/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
-=======
 				<div id="nav" align="center" style="margin-right: 250px;">
 				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<%-- <a class="book" href="<%=cp %>/movie/theater.do" style="color: #222222;"><b>극장</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
 				<a class="book" href="<%=cp %>/movie/event.do" style="color: #222222;"><b>스토어</b></a>
->>>>>>> loadtest
+	
 				<br><br>
 				</div>
 			</div>	
