@@ -17,7 +17,7 @@
 
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
 <link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <!-- Bootstrap core JavaScript -->
 <script src="<%=cp%>/jspProject/vendor/jquery/jquery.min.js"></script>
 <script	src="<%=cp%>/jspProject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -120,6 +120,12 @@ a:hover { text-decoration: none;}
 	font-weight: bold;
 }
 
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
+
 .nav {
 
 	text-align: center;
@@ -174,10 +180,10 @@ width: 180px;
 <!-- Custom styles for this template -->
 <link href="css/scrolling-nav.css" rel="stylesheet">
 </head>
-<body id="page-top" style="align-content: center; align-items: center; align-self: center;">
+<body id="page-top" style="align-content: center; align-items: center; align-self: center; background-color: #FDFCF0;">
 <c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
-			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+			<div class="login" style="margin-left:350px; width: 1000px; height: 10px;" align="right">
 				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
@@ -186,7 +192,7 @@ width: 180px;
 			</div>
 		</c:when> 
 		<c:otherwise>
-		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+		<div class="login" style="margin-left:350px; width: 1000px; height: 10px;" align="right">
 				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
 				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
 				&nbsp;&nbsp;
@@ -201,7 +207,7 @@ width: 180px;
 
 	
 <img src="<%=cp%>/jspProject/image/Gline.png">
-<div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
+<div class="head" style="background-color: #FEF8DC; margin-right: 0px; margin-top:-10px; margin-bottom: -20px; padding-bottom: -10px;">
 	<div>
 			<div style="display: inline-block; float: left; width: 20%; padding-top: 20px;" >
 				<h1 align="left" >

@@ -77,15 +77,15 @@ public class MovieTicketServlet extends HttpServlet{
 
 			String userId = req.getParameter("userId");
 			String userPwd = req.getParameter("userPwd");
-
-			System.out.println(userId);	
-
+			
+			
+			
 			MovieTicketDTO dto = dao.getReadData(userId);
 
 			if(dto==null||!dto.getUserPwd().equals(userPwd)) {
 
 				req.setAttribute("message", "아이디 또는 패스워드가 맞지 않습니다. 확인 후 입력해주세요.");
-
+				
 				url = "/jspProject/login/movie_login.jsp";
 				forward(req,resp,url);					
 				return;
@@ -93,17 +93,13 @@ public class MovieTicketServlet extends HttpServlet{
 
 			//세션에 id 올려둠
 			HttpSession session = req.getSession(true);
-
 			CustomInfo info = new CustomInfo();
-
 			info.setUserId(dto.getUserId());
-
 			session.setAttribute("customInfo", info);
+			session.setMaxInactiveInterval(60*60);
 			url = cp+"/movie/main.do";
 			resp.sendRedirect(url);
-
 		}
-
 
 		// 아이디 찾기 구역
 		else if(uri.indexOf("findId.do")!=-1) {
@@ -481,10 +477,8 @@ public class MovieTicketServlet extends HttpServlet{
 			HttpSession session=req.getSession();
 
 			if(session.getAttribute("customInfo")==null||((CustomInfo)session.getAttribute("customInfo")).getUserId().equals("")) {
-
 				System.out.println("비로그인시..");
-
-				url=cp+"/jspProject/cgvMain.jsp";
+				url= cp+"/movie/main.do";
 				resp.sendRedirect(url);
 				return;
 			}
@@ -924,7 +918,6 @@ public class MovieTicketServlet extends HttpServlet{
 			forward(req, resp, url);
 		
 		}else if(uri.indexOf("moviebill.do")!=-1) {
-			
 		
 			MovieTicketDAO ticketdao = new MovieTicketDAO(DBCPConn.getConnection());
 			Movie_PaymentDAO paymentdao = new Movie_PaymentDAO(DBCPConn.getConnection());

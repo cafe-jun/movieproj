@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제완료</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <style type="text/css">
 
 a { text-decoration: none}
@@ -18,6 +19,12 @@ a { text-decoration: none}
 
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 #content {
 	
@@ -77,7 +84,7 @@ border: 1px;
 </style>
 
 </head>
-<body leftmargin="0" rightmargin="0" bgcolor="#FEF8DC">
+<body leftmargin="0" rightmargin="0" bgcolor="#FDFCF0">
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -116,9 +123,9 @@ border: 1px;
 					<img src="<%=cp %>/jspProject/data/image/ticket.png">
 				</h3>
 				<div id="nav" align="left" style="margin-right: 350px;">
-				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222; font-size: 14pt;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222; font-size: 14pt;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222; font-size: 14pt;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	

@@ -13,7 +13,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>영화 그 이상의 감동. CGV</title>
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="<%=cp%>/mvproject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap core JavaScript -->
@@ -37,6 +37,12 @@ a:hover { text-decoration: none;}
 	font-size: 18px;
 	font-weight: bold;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 .nav {
 
@@ -106,25 +112,29 @@ width: 180px;
 </script>
 </head>
 
-<body id="page-top" style="background-color: ;">
+<body id="page-top" style="background-color: #FDFCF0;">
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>My CGV</b></a>
 			</div>
 		</c:when> 
 		<c:otherwise>
 		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				${sessionScope.customInfo.userId }님 반갑습니다.
-				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
-				&nbsp;
-				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
+				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
+				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/updated.do" style="color: black"><b>My CGV</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/moviebill.do" style="color: black"><b>영화 주문정보</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/store/bill.do" style="color: black"><b>스토어 주문정보</b></a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -160,7 +170,7 @@ width: 180px;
 	 	 <section id="about">
 		      <div class="row">
 		        <div class="col-lg-8 mx-auto" >
-		          <h3 style="margin-left: -50px;"><b>팝콘/음료/굿즈</b></h3> 
+		          <h3 style="margin-left: -50px;"><b>영화 예매 정보</b></h3> 
 		      	</div>
 	      	</div>
 	  </section>
@@ -169,7 +179,7 @@ width: 180px;
 	  <div class="container">
 	<div class="container" style="padding-left: 150px">
 			<table style="width: 800px;" border="0">
-				<tr><td style="font-size: 20px;"><b>상품주문정보</b></td></tr>
+				<tr><td style="font-size: 20px;"><b>My 예매 내역</b></td></tr>
 				<tr><td style="height: 20px;"></td></tr>
 				<tr height="3"><td colspan="7" bgcolor="black" ></td></tr>
 					<tr height="50">
@@ -206,19 +216,19 @@ width: 180px;
 				<tr height="70">
 					<td align="left" width="100" ><b>이름</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userName }" style="border:none;">
+						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userName }" style="border:none; background-color: #FDFCF0;">
 					</td>	
 				</tr>
 				<tr height="100">
 					<td align="left" width="100" ><b>전화번호</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userTel }" style="border:none;">
+						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userTel }" style="border:none; background-color: #FDFCF0;">
 					</td>
 				</tr>
 				<tr height="70">
 					<td align="left" width="100" ><b>이메일</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="20" maxlength="20" class="txtField" value="${ticketdto.userEmail }" style="border:none;">
+						<input type="text" name="name" size="20" maxlength="20" class="txtField" value="${ticketdto.userEmail }" style="border:none; background-color: #FDFCF0;">
 					</td>
 				</tr>
 				<tr height="1">

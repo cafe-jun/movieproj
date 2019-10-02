@@ -7,8 +7,8 @@ String cp =request.getContextPath();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
+<title>영화 그 이상의 감동. CGV</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <script type="text/javascript">
 /* background-position-x:10px */
 var x=10;
@@ -33,6 +33,12 @@ a { text-decoration: none}
 
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 #content {
 	
@@ -184,7 +190,7 @@ img {vertical-align: middle;}
 
 </head>
 <%-- <body id="mainbody" name="mainbody" style="background-color: #FEF8DC;background-image:url('<%=cp%>/jspProject/image/pop.jpg'); " onload="backimg()"> --%>
-<body style="background-color: #FEF8DC;">
+<body style="background-color: #FDFCF0;">
 <div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
 		<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -215,22 +221,22 @@ img {vertical-align: middle;}
 <img src="<%=cp %>/jspProject/image/Gline.png">
 <div class="head" style="background-color: #FEF8DC; margin-right: 0px;">
 	<div>
-			<div style="display: inline-block; float: left; width: 20%" >
-				<h1 align="left" >
-				<a href="<%=cp%>/movie/main.do"><img style="padding-left: 20px;" src="<%=cp %>/jspProject/image/cgvLogo.png"></a>
-				</h1>
+		<div style="display: inline-block; float: left; width: 20%" >
+			<h1 align="left" >
+			<a href="<%=cp%>/movie/main.do"><img style="padding-left: 60px;" src="<%=cp %>/jspProject/image/cgvLogo.png"></a>
+			</h1>
+		</div>
+		<div style="display: inline-block; margin-top:10px; float: left; width: 80%" > 
+			<h3 align="center" style="width: 550px; margin-left: 70px; margin-right: 0;">
+				<img src="<%=cp %>/jspProject/image/cultureplex.png">
+			</h3>
+			<div id="nav" align="center" style="margin-right: 140px;">
+			<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black; font-size: 14pt;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="<%=cp %>/movie/movie_select.do" style="color: black; font-size: 14pt;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="<%=cp %>/store/list.do" style="color: black; font-size: 14pt;"><b>스토어</b></a>
+			<br><br>
 			</div>
-			<div style="display: inline-block; margin-top:10px; float: left; width: 80%" > 
-				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
-					<img src="<%=cp %>/jspProject/image/cultureplex.png">
-				</h3>
-				<div id="nav" align="center" style="margin-right: 270px;">
-				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/movie/movie_select.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/store/list.do" style="color: black"><b>스토어</b></a>
-				<br><br>
-				</div>
-			</div>	
+		</div>	
 	</div>
 </div>
 
@@ -252,30 +258,30 @@ img {vertical-align: middle;}
 <br><br><br>
 <table cellpadding="10px">
 <tr>
-<td style="border:3pt solid #444444;width: 200px" align="center">
+<td style="border:3pt solid #979696;width: 200px" align="center">
 <a href="movie_evaluation.do?movietype=보통의연애">
 <img alt="" src="<%=cp %>/jspProject/image/movie1.jpg" style="width: 250px;height: 200px"><br>
 보통의연애
 </a>
 </td>
-<td style="border:3pt solid #444444;width: 200px" align="center">
+<td style="border:3pt solid #979696;width: 200px" align="center">
 <a href="movie_evaluation.do?movietype=장사리">
 <img alt="" src="<%=cp %>/jspProject/image/movie2.jpg" style="width: 250px;height: 200px"><br>
 장사리
 </td>
-<td style="border:3pt solid #444444;width: 200px" align="center">
+<td style="border:3pt solid #979696;width: 200px" align="center">
 <a href="movie_evaluation.do?movietype=퍼펙트맨">
 <img alt="" src="<%=cp %>/jspProject/image/movie3.jpg" style="width: 250px;height: 200px"><br>
 퍼펙트맨
 </td>
 </tr>
 <tr>
-<td style="border:3pt solid #444444;width: 200px" align="center">
+<td style="border:3pt solid #979696;width: 200px" align="center">
 <a href="movie_evaluation.do?movietype=양자물리학">
 <img alt="" src="<%=cp %>/jspProject/image/movie4.jpg" style="width: 250px;height: 200px"><br>
 양자물리학
 </td>
-<td style="border:3pt solid #444444;width: 200px" align="center">
+<td style="border:3pt solid #979696;width: 200px" align="center">
 <a href="movie_evaluation.do?movietype=조커">
 <img alt="" src="<%=cp %>/jspProject/image/movie5.jpg" style="width: 250px;height: 200px"><br>
 조커

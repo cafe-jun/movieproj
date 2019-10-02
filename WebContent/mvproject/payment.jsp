@@ -87,13 +87,24 @@ width: 180px;
 
 }
 </style>
+
 <script type="text/javascript">
 	function paymentSendIt() {
-		var f = document.myForm;
+	
+	var f = document.myForm;
+	
+	var session = "<c:out value='${sessionScope.customInfo.userId}'/>";
+	if(session == ""){
+		alert("로그인 되지 않았습니다. 로그인 해주세요 ");
+		f.action = "<%=cp%>/movie/login.do";
+		f.submit();
+	}else{
 		f.action = "<%=cp%>/store/bill.do";
 		alert("결제를 진행할까요 ?");
-		f.submit();
+		f.submit();		
 	}
+}
+	
 	function CheckAll(chk) {
 		for (i = 0; i < chk.length; i++) {
 			if (chk[i].checked == true) {

@@ -149,7 +149,7 @@ public class Movie_PaymentDAO {
 		String sql;
 		try {
 			sql  =  "select movietype,timetype,roomtype,sitnum,userId,reservenum,paymethod ";
-			sql +=  " from movie_paymenttable where userId=?";
+			sql +=  " from movie_paymenttable where userId=? and paymethod is not null ";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);

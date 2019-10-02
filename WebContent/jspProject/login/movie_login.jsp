@@ -12,6 +12,7 @@
 
 <link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=cp%>/jspProject/css/style.css" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
 <script type="text/javascript">
@@ -75,6 +76,7 @@
 		}
 	 	
 	 	f.action = "<%=cp%>/movie/login_ok.do";
+	 	
 		f.submit();
 		 
 	}
@@ -85,13 +87,16 @@
 /* 기본 css */
 a:link { text-decoration: none;}
 a:hover { text-decoration: none;}
-.book {
-	font-size: 18px;
-	font-weight: bold;
-}
+
 .nav {
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 #content {
 	
 	width: 1000px;
@@ -123,7 +128,7 @@ a:hover { text-decoration: none;}
 
 
 </head>
-<body style="background-color: #FFFFFF;">
+<body style="background-color: #FDFCF0;">
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -163,9 +168,9 @@ a:hover { text-decoration: none;}
 					<img  src="<%=cp%>/jspProject/image/cultureplex.png">
 				</h3>
 				<div id="nav" align="center" style="margin-right: 250px;">
-				<a class="book" href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/movie/movie_select.do" style="color: #222222;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="book" href="<%=cp %>/store/list.do" style="color: #222222;"><b>스토어</b></a>
+				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: #222222; font-size: 14pt;"><b>영화정보</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/movie/movie_select.do" style="color: #222222; font-size: 14pt;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/store/list.do" style="color: #222222; font-size: 14pt;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	
@@ -190,7 +195,7 @@ a:hover { text-decoration: none;}
 		<td rowspan="8"  width="31px"></td>
 		<td rowspan="8" width="349px"><img alt="Event Banner" src="<%=cp %>/jspProject/image/loginside.jpg"></td>
 	</tr>
-	<tr height="39px" valign="bottom">
+	<tr height="39px" valign="middle">
 		<td colspan="2" width="440px" align="center"><font face="verdana" size="2" ><b>아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</b></font></td>
 	</tr>
 
@@ -201,7 +206,11 @@ a:hover { text-decoration: none;}
 		<td colspan="2" align="center"><input type="password" name="userPwd" placeholder="패스워드를 입력하세요" style="text-align:left; padding-left:10px; width:230px; height:42px; letter-spacing: 3px"/></td>
 	</tr>
 	<tr height="30px">
-		<td colspan="2" align="center"><input type="button" value="로  그  인" style="text-align:center; width:240px; height:42px; letter-spacing: 5px" class="btn2" onclick="sendIt();" /></td>
+		<td colspan="2" align="center"><input type="button" value="로  그  인" style="text-align:center; width:230px; height:42px; letter-spacing: 5px" class="btn2" onclick="sendIt();" /></td>
+	</tr>
+	
+	<tr>
+		<td align="center" colspan="2"><font size="2" color="red">${message }</font></td>
 	</tr>
 
 	<tr valign="middle">

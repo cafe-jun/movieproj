@@ -15,6 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영화 그 이상의 감동. CGV(결제창)</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
 <style type="text/css">
 
@@ -24,6 +25,12 @@ a { text-decoration: none}
 
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 #content {
 	
@@ -197,7 +204,7 @@ height: 28px;
 </script>
 
 </head>
-<body leftmargin="0" rightmargin="0" bgcolor="#fef8dc">
+<body leftmargin="0" rightmargin="0" bgcolor="#FDFCF0">
 
 <div class="floating">
 	<div>
@@ -253,13 +260,13 @@ height: 28px;
 				</h1>
 			</div>
 			<div style="display: inline-block; margin-top:10px; float: left; width: 80%" > 
-				<h3 align="left" style="width: 550px; margin-left: 50px; margin-right: 0;">
+				<h3 align="left" style="width: 550px; margin-left: 70px; margin-right: 0;">
 					<img src="<%=cp %>/jspProject/data/image/ticket.png">
 				</h3>
-				<div id="nav" align="left" style="margin-right: 350px;">
-				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/movie/movie_select.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/store/list.do" style="color: black"><b>스토어</b></a>
+				<div id="nav" align="left" style="padding-left:50px; margin-right: 170px;">
+				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black; font-size: 14pt;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/movie/movie_select.do" style="color: black; font-size: 14pt;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/store/list.do" style="color: black; font-size: 14pt;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	
@@ -267,9 +274,7 @@ height: 28px;
 </div>
 <img src="<%=cp %>/jspProject/image/Gline.png">
 <br/><br/><br/><br/>
-
 <!-- 결제창 -->
-
 <table width="800" align="center">
 <tr align="right">
 	<td align="right">

@@ -12,6 +12,7 @@
 
 <link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=cp%>/jspProject/css/style.css" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 
 <script type="text/javascript">
 	
@@ -54,6 +55,12 @@ a:hover { text-decoration: none;}
 .nav {
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 #content {
 	
 	width: 1000px;
@@ -84,7 +91,7 @@ a:hover { text-decoration: none;}
 </style>
 
 </head>
-<body style="background-color: #FFFFFF;">
+<body style="background-color: #F8F8F8;">
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -185,7 +192,7 @@ a:hover { text-decoration: none;}
 	</tr>
 	<tr height="30px">
 		<td colspan="2" align="left">
-		<input type="button" value="아이디 찾기" style="text-align:center; width:244px; height:42px; letter-spacing: 5px" onclick="findId();" />
+		<input type="button" value="아이디 찾기" style="text-align:center; width:230px; height:42px; letter-spacing: 5px" onclick="findId();" />
 		</td>
 	</tr>
 

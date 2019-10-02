@@ -11,7 +11,15 @@ String cp =request.getContextPath();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화 그 이상의 감동. CGV</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<style type="text/css">
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
+</style>
 </head>
 <body>
 <%

@@ -106,25 +106,29 @@ width: 180px;
 </script>
 </head>
 
-<body id="page-top" style="background-color: ;">
+<body id="page-top" style="background-color: #FDFCF0;">
 <!-- 로그인시 로그아웃, mycgv나오게 디폴트 로그인 회원가입 mycgv -->
 
 	<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
 			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				<a href="<%=cp%>/movie/login.do" style="color: black">로그인</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/signConfirm.do" style="color: black">회원가입</a>
+				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
 				&nbsp;
-				<a href="<%=cp%>/movie/myCgv.do" style="color: black">My CGV</a>
+				<a href="<%=cp%>/movie/login.do" style="color: black"><b>My CGV</b></a>
 			</div>
 		</c:when> 
 		<c:otherwise>
 		<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
-				${sessionScope.customInfo.userId }님 반갑습니다.
-				<a href="<%=cp%>/movie/logout.do" style="color: black">로그아웃</a>
-				&nbsp;
-				<a href="<%=cp%>/movie/updated.do" style="color: black">My CGV</a>
+				<b>${sessionScope.customInfo.userId }님 반갑습니다.</b>
+				<a href="<%=cp%>/movie/logout.do" style="color: black"><b>로그아웃</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/updated.do" style="color: black"><b>My CGV</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/movie/moviebill.do" style="color: black"><b>영화 주문정보</b></a>
+				&nbsp;&nbsp;
+				<a href="<%=cp%>/store/bill.do" style="color: black"><b>스토어 주문정보</b></a>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -171,27 +175,29 @@ width: 180px;
 			<table style="width: 800px;" border="0">
 				<tr><td style="font-size: 20px;"><b>상품주문정보</b></td></tr>
 				<tr><td style="height: 20px;"></td></tr>
-				<tr height="3"><td colspan="6" bgcolor="black" ></td></tr>
+				<tr height="3"><td colspan="7" bgcolor="black" ></td></tr>
 					<tr height="50">
 						<td align="center" width="20">상품명</td>
 						<td align="center" width="80">주문번호</td>
+						<td align="center" width="80">상품갯수</td>
 						<td align="center" width="30">결제금액</td>
 						<td align="center" width="30">결제방식</td>
 						<td align="center" width="30">결제일자</td>
 					</tr>
 				<tr height="2">
-					<td colspan="6" bgcolor="#cccccc"></td>
+					<td colspan="7" bgcolor="#cccccc"></td>
 				</tr>
 				<c:forEach var="dto" items="${orderlists}">	
 					<tr height="30">
 						<td  align="center" width="80"><img class="card-img-top" src="${imagePath}/${dto.saveFileName}"  width="200" height="150">${dto.subject }</td> 
 						<td align="center" width="80">${dto.order_number}</td>
+						<td align="center" width="80">${dto.amount }</td>
 						<td align="center" width="60">${dto.storeSum }원</td>
 						<td align="center" width="60" >${dto.cardType}</td>
 						<td align="center" width="60">${dto.paymentDate }</td>
 					</tr>
 				</c:forEach>	
-				<tr height="1"><td colspan="6" bgcolor="black"></td></tr>
+				<tr height="1"><td colspan="7" bgcolor="black"></td></tr>
 			</table >
 			<br/><br/>
 			<table style="width: 800px;">
@@ -205,19 +211,19 @@ width: 180px;
 				<tr height="70">
 					<td align="left" width="100" ><b>이름</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userName }" style="border:none;">
+						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userName }" style="border:none; background-color: #FDFCF0;">
 					</td>	
 				</tr>
 				<tr height="100">
 					<td align="left" width="100" ><b>전화번호</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userTel }" style="border:none;">
+						<input type="text" name="name" size="10" maxlength="10" class="txtField" value="${ticketdto.userTel }" style="border:none; background-color: #FDFCF0;">
 					</td>
 				</tr>
 				<tr height="70">
 					<td align="left" width="100" ><b>이메일</b></td>
 					<td style="padding-left: 5px; " width="150">
-						<input type="text" name="name" size="20" maxlength="20" class="txtField" value="${ticketdto.userEmail }" style="border:none;">
+						<input type="text" name="name" size="20" maxlength="20" class="txtField" value="${ticketdto.userEmail }" style="border:none; background-color: #FDFCF0;">
 					</td>
 				</tr>
 				<tr height="1">

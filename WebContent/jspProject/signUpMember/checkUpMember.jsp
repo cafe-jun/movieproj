@@ -12,7 +12,7 @@
 
 <link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=cp%>/jspProject/css/style.css" type="text/css"/>
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
 
 <script type="text/javascript">
@@ -65,6 +65,12 @@ a:hover { text-decoration: none;}
 .nav {
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 #content {
 	
 	width: 1000px;

@@ -246,32 +246,32 @@ width: 180px;
 	<br/>
   <!-- Portfolio Item Row -->
   <div class="row" >
-
     <div class="col-md-7">
       <img class="img-fluid" src="${imagePath}/${dto.saveFileName}" style="padding-left: 50px"  width="500" height="450" alt="">
     </div>
     <div class="col-md-5" >
       <h4 class="my-3"><font style=""><b>${dto.price}원</b></font></h4>
-
         <hr width =100% color="#ccccc" align="left" size=30/>
       <h5><b>원 산 지 : 미국 </b></h5>
       <br/>
       <h5><b>유효기간 : 구매일로 부터 6개월</b></h5>
       <br/>
       <h5><b>상품 수량</b></h5>
+      
       <form action=""  name="form" method="post">
 	      	<input type= "hidden" name="paysell_price" value="${dto.price}">
 			<input type="text" style="text-align: center"  name="amount" value="1" size="3" onchange="change();">
 			<input type="button" value=" + " onclick="add();"><input type="button" value=" - " onclick="del();"><br>
 		      <h3 class="my-3"><b>총 구매금액 :</b>&nbsp;&nbsp;<b><input type="text" name="storeSum" size="4" readonly style="border:none;">원</b></h3>
-		      <input type="button" class="btn btn-primary" value="구매취소" style="width: 100px;height: 50px;" onclick="javascript:location.href='<%=cp%>/store/list.do';"/>
-			  <input type="submit" class="btn btn-primary" value="구매하기" style="width: 100px;height: 50px;" onclick="paymentsendIt();"/>
+		      <input type="button" class="btn btn-primary" value="구매취소" style="width: 200px;height: 50px;" onclick="javascript:location.href='<%=cp%>/store/list.do';"/>
+			  <input type="submit" class="btn btn-primary" value="구매하기" style="width: 200px;height: 50px;" onclick="paymentsendIt();"/>
 	  </form>
-	  <form action="" method="post" name="basket" style="align-content: center;">
+	  <br/>
+	   <form action="" method="post" name="basket" style="align-content: center;">
 		   <input type= "hidden" name="basketsell_price" value="${dto.price}">
 		   <input type="hidden" style="text-align: center;"  name="amount" value="1" size="3" onchange="change();">
 	       <input type="hidden" name="storeSum" size="4" readonly style="border:none;background-color: #FEF8DC;">
-	       <input type="submit" class="btn btn-primary" value="장바구니" style="width: 100px;height: 50px; align-self: center;" onclick="bastketSendIt()"/>
+	       <input type="submit" class="btn btn-primary" value="장바구니" style="width: 405px;height: 50px; align-self: center;" onclick="bastketSendIt()"/>
 	       <!-- <input type="image" src="<%=cp%>/mvproject/image/basketimage.jpg" width="70" border="0" onclick="bastketSendIt();">-->
 	   </form> 
 	  <br/><br/>	

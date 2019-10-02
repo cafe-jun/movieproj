@@ -14,7 +14,8 @@ List<Movie_PaymentDTO> lists=(List<Movie_PaymentDTO>)request.getAttribute("lists
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화 그 이상의 감동. CGV</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <script type="text/javascript">
 var result=0;
 var set=1;
@@ -65,6 +66,8 @@ function resultset() {
 	}else{
 		alert("인원수를 맞춰주세요.");
 	}
+	
+	
 }
 </script>
 <style type="text/css">
@@ -76,6 +79,12 @@ a { text-decoration: none}
 
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 #content {
 	
@@ -225,7 +234,7 @@ img {vertical-align: middle;}
 
 </style>
 </head>
-<body style="background-color: #FEF8DC">
+<body style="background-color: #FDFCF0">
 
 <c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
@@ -260,14 +269,14 @@ img {vertical-align: middle;}
 				<a href="<%=cp%>/cgv/cgvMain.jsp"><img style="padding-left: 20px;" src="<%=cp %>/jspProject/image/cgvLogo.png"></a>
 				</h1>
 			</div>
-			<div style="display: inline-block; margin-top:10px; float: left; width: 80%" > 
+			<div style="display: inline-block; padding-left:70px; margin-top:10px; float: left; width: 80%" > 
 				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
 					<img src="<%=cp %>/jspProject/image/cultureplex.png">
 				</h3>
-				<div id="nav" align="center" style="margin-right: 270px;">
-				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/movie/movie_select.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/store/list.do" style="color: black"><b>스토어</b></a>
+				<div id="nav" align="center" style="margin-right: 210px;">
+				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black; font-size: 14pt;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/movie/movie_select.do" style="color: black; font-size: 14pt;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/store/list.do" style="color: black; font-size: 14pt;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	
@@ -287,7 +296,7 @@ img {vertical-align: middle;}
 <!-- 실 내용 -->
 <div align="center">
 <br><br><br><br><br><br>
-<div style="background-color: black; width: 30%; height: 70px"><br>
+<div style="background-color: #333333; width: 30%; height: 70px"><br>
 <font color="#ffffff" size="4"> 영화 좌석 예매</font>
 </div>
 <div style="border:1pt solid black; width: 30%; ">

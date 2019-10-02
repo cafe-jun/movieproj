@@ -19,7 +19,8 @@ String movietype=(String)request.getAttribute("movietype");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<title>영화 그 이상의 감동. CGV</title>
 
 <style type="text/css">
 
@@ -30,6 +31,12 @@ a { text-decoration: none}
 
 	text-align: center;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 #content {
 	
@@ -180,12 +187,12 @@ img {vertical-align: middle;}
 </style>
 
 </head>
-<body style="background-color: #FEF8DC"><br><br>
+<body style="background-color: #FDFCF0">
 
-<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+<div class="login" style="margin-left:350px; width: 1000px;" align="right">
 		<c:choose>
 		<c:when test="${empty sessionScope.customInfo.userId }">
-			<div class="login" style="margin-left:350px; width: 1000px; height: 20px;" align="right">
+			<div class="login" style=" width: 1000px; height: 20px;" align="right">
 				<a href="<%=cp%>/movie/login.do" style="color: black"><b>로그인</b></a>
 				&nbsp;
 				<a href="<%=cp%>/movie/signConfirm.do" style="color: black"><b>회원가입</b></a>
@@ -217,13 +224,13 @@ img {vertical-align: middle;}
 				</h1>
 			</div>
 			<div style="display: inline-block; margin-top:10px; float: left; width: 80%" > 
-				<h3 align="center" style="width: 550px; margin-left: 0; margin-right: 0;">
+				<h3 align="center" style="width: 550px; margin-left: 50px; margin-right: 0;">
 					<img src="<%=cp %>/jspProject/image/cultureplex.png">
 				</h3>
-				<div id="nav" align="center" style="margin-right: 270px;">
-				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/movie/movie_select.do" style="color: black"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
-				<a href="<%=cp %>/store/list.do" style="color: black"><b>스토어</b></a>
+				<div id="nav" align="center" style="margin-right: 170px;">
+				<a href="<%=cp %>/movie/movie_evaluation_select.do" style="color: black; font-size: 14pt;"><b>영화</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/movie/movie_select.do" style="color: black; font-size: 14pt;"><b>예매</b></a>&nbsp;&nbsp;&nbsp;
+				<a href="<%=cp %>/store/list.do" style="color: black; font-size: 14pt;"><b>스토어</b></a>
 				<br><br>
 				</div>
 			</div>	

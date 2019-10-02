@@ -17,7 +17,7 @@
 
 <script type="text/javascript" src="<%=cp %>/jspProject/js/util.js"></script>
 <link href="<%=cp%>/jspProject/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
 <!-- Bootstrap core JavaScript -->
 <script src="<%=cp%>/jspProject/vendor/jquery/jquery.min.js"></script>
 <script	src="<%=cp%>/jspProject/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -119,6 +119,12 @@ a:hover { text-decoration: none;}
 	font-size: 18px;
 	font-weight: bold;
 }
+
+body {
+	
+	font-family: "Nanum Gothic", sans-serif;
+	
+	}
 
 .nav {
 
